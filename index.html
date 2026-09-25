@@ -20,7 +20,7 @@
 body.light{--bg:#f4f7fb;--panel:#fff;--panel2:#f7f9fc;--line:#dce3ee;--text:#172033;--muted:#667085;--shadow:0 14px 35px rgba(35,48,75,.10);background:radial-gradient(900px 500px at 10% -10%,rgba(124,92,255,.10),transparent 60%),#f4f7fb}
 body.light .sidebar,body.light .topbar{background:rgba(255,255,255,.88)}
 body.light .card{background:linear-gradient(180deg,#fff,#f9fbfe)}
-body.light .field input,body.light .field select,body.light .field textarea,body.light .iconbtn,body.light .btn{background:#fff;color:var(--text)}
+body.light .field input,body.light .field select,body.light .field textarea{background:#fff;color:var(--text)}
 body.light .table th,body.light .table td{border-color:#e8edf4}
 body.light .notice{background:#f8fafd}
 body.light .drawbox{background:radial-gradient(circle at 50% 20%,rgba(124,92,255,.12),transparent 55%),#f8faff}
@@ -58,6 +58,11 @@ body.amharic .eyebrow{letter-spacing:.03em}
 .btn.danger{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border-color:transparent;box-shadow:0 7px 20px rgba(220,38,38,.20)}
 .btn.warn{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-color:transparent;box-shadow:0 7px 20px rgba(217,119,6,.20)}
 .iconbtn{background:linear-gradient(135deg,#334155,#1e293b);color:#fff;border-color:#475569;box-shadow:0 6px 16px rgba(15,23,42,.18)}
+ .menu-toggle{width:46px;height:46px;padding:0;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.menu-toggle svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .18s ease}
+.menu-toggle:hover svg{transform:scale(1.06)}
+.menu-toggle:focus-visible{outline:3px solid rgba(124,92,255,.25);outline-offset:2px}
+
 #notificationBtn{background:linear-gradient(135deg,#06b6d4,#0284c7);border-color:transparent}
 #notificationBtn:hover{box-shadow:0 10px 24px rgba(2,132,199,.25)}
 .nav button{border:1px solid transparent}
@@ -76,6 +81,63 @@ body.light .sidebar-tool{color:#fff}
 body.light .nav button.active{background:linear-gradient(90deg,#ede9fe,#eff6ff);color:#172033;border-color:#ddd6fe}
 body.light .nav button:hover{background:#f1f5f9;color:#172033}
 .lang-btn{min-width:92px}
+
+
+/* ===== V9 NAV + NOTIFICATION + ADMIN CHAT ===== */
+.nav .ico{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(124,92,255,.10);color:var(--text);flex:0 0 34px;transition:.18s ease}
+.nav .ico svg{width:18px;height:18px;display:block;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.nav button:hover .ico{background:rgba(124,92,255,.18);color:#7c5cff;transform:scale(1.04)}
+.nav button.active .ico{background:linear-gradient(135deg,#7c5cff,#2563eb);color:#fff;box-shadow:0 5px 14px rgba(99,72,210,.25)}
+body.light .nav .ico{background:#f1f5ff;color:#334155}
+body.light .nav button:hover .ico{background:#e0e7ff;color:#4f46e5}
+body.light .nav button.active .ico{background:linear-gradient(135deg,#7c5cff,#2563eb);color:#fff}
+.notif-count{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#ef4444;color:#fff;font-size:10px;font-weight:900;display:grid;place-items:center;border:2px solid var(--bg);line-height:1}
+#notificationBtn{position:relative}
+.chat-shell{display:grid;grid-template-columns:250px 1fr;gap:16px;min-height:520px}
+.chat-people{border:1px solid var(--line);border-radius:18px;background:var(--glass);padding:12px}
+.chat-person{width:100%;text-align:left;border:1px solid var(--line);background:transparent;color:var(--text);padding:13px;border-radius:13px;display:flex;align-items:center;gap:10px}
+.chat-person.active{background:linear-gradient(135deg,rgba(124,92,255,.16),rgba(59,130,246,.08));border-color:rgba(124,92,255,.35)}
+.chat-avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#7c5cff,#2563eb);color:#fff;font-weight:900}
+.chat-main{border:1px solid var(--line);border-radius:18px;background:var(--glass);display:flex;flex-direction:column;overflow:hidden}
+.chat-head{padding:15px 17px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.chat-messages{flex:1;padding:16px;display:flex;flex-direction:column;gap:10px;min-height:360px;max-height:470px;overflow:auto}
+.chat-msg{max-width:min(78%,520px);padding:10px 13px;border-radius:15px;border:1px solid var(--line);background:var(--panel2)}
+.chat-msg.mine{align-self:flex-end;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(59,130,246,.15));border-color:rgba(124,92,255,.32)}
+.chat-msg small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+.chat-compose{display:flex;gap:9px;padding:12px;border-top:1px solid var(--line)}
+.chat-compose input{flex:1;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:11px 13px;outline:none}
+.chat-note{font-size:11px;color:var(--muted);margin-top:10px}
+@media(max-width:700px){.chat-shell{grid-template-columns:1fr}.chat-people{min-height:auto}.chat-main{min-height:500px}.chat-messages{min-height:330px}}
+
+/* ===== FINAL BUTTON VISIBILITY / LIGHT MODE FIX ===== */
+.btn{min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:12px;font-weight:800;letter-spacing:.01em;color:#fff!important;background:linear-gradient(135deg,#475569,#334155)!important;border:1px solid rgba(255,255,255,.16)!important}
+.btn.primary{background:linear-gradient(135deg,#8b5cf6,#6d28d9)!important;color:#fff!important}
+.btn.success{background:linear-gradient(135deg,#10b981,#047857)!important;color:#fff!important}
+.btn.danger{background:linear-gradient(135deg,#ef4444,#b91c1c)!important;color:#fff!important}
+.btn.warn{background:linear-gradient(135deg,#f59e0b,#c2410c)!important;color:#fff!important}
+.btn.info{background:linear-gradient(135deg,#06b6d4,#0369a1)!important;color:#fff!important}
+.btn.secondary{background:linear-gradient(135deg,#64748b,#475569)!important;color:#fff!important}
+
+/* In Light Mode, buttons stay clearly visible but use dark/black lettering. */
+body.light .btn{color:#111827!important;border-color:rgba(15,23,42,.10)!important}
+body.light .btn:not(.primary):not(.success):not(.danger):not(.warn):not(.info):not(.secondary){background:linear-gradient(135deg,#e2e8f0,#cbd5e1)!important}
+body.light .btn.primary{background:linear-gradient(135deg,#ddd6fe,#c4b5fd)!important}
+body.light .btn.success{background:linear-gradient(135deg,#bbf7d0,#86efac)!important}
+body.light .btn.danger{background:linear-gradient(135deg,#fecaca,#fca5a5)!important}
+body.light .btn.warn{background:linear-gradient(135deg,#fed7aa,#fdba74)!important}
+body.light .btn.info{background:linear-gradient(135deg,#bae6fd,#7dd3fc)!important}
+body.light .btn.secondary{background:linear-gradient(135deg,#cbd5e1,#94a3b8)!important}
+body.light .iconbtn{color:#111827!important}
+body.light #notificationBtn{color:#fff!important;background:linear-gradient(135deg,#06b6d4,#0284c7)!important}
+body.light .gallery-btn{color:#fff!important}
+
+/* Login role buttons are also visually distinct. */
+.demo-switch button{font-weight:800}
+.demo-switch button.active{background:linear-gradient(135deg,#ddd6fe,#c4b5fd)!important;color:#111827!important}
+
+/* Disabled buttons remain readable instead of becoming blank white blocks. */
+.btn:disabled,.iconbtn:disabled{opacity:.52;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+
 </style>
 </head>
 <body>
@@ -85,7 +147,7 @@ body.light .nav button:hover{background:#f1f5f9;color:#172033}
     <div class="eyebrow">Equb Management</div>
     <h2 style="margin:5px 0">Sign in to continue</h2>
     <p style="color:var(--muted)">No Firebase yet. Everything in this prototype is stored locally in this browser.</p>
-    <div class="demo-switch"><button id="adminTab" class="active" onclick="setLoginRole('admin')">👑 Super Admin</button><button id="userTab" onclick="setLoginRole('user')">👤 Member</button></div>
+    <div class="demo-switch"><button id="adminTab" class="active" onclick="setLoginRole('admin')">Super Admin</button><button id="managerTab" onclick="setLoginRole('manager')">Admin</button><button id="userTab" onclick="setLoginRole('user')">Member</button></div>
     <div id="loginForm"></div>
     <div class="login-note">Sign in to manage your Equb account.</div>
   </div>
@@ -97,13 +159,13 @@ body.light .nav button:hover{background:#f1f5f9;color:#172033}
     <div class="brand"><div class="logo">E</div><div><b>EqubFlow</b><small id="brandSub">Super Admin</small></div></div>
     <nav id="nav" class="nav"></nav>
     <div class="sidebar-tools">
-      <button id="sidebarLangBtn" class="sidebar-tool lang-tool" onclick="toggleLanguage()">🌐 <span id="sidebarLangText">አማርኛ</span></button>
-      <button id="sidebarThemeBtn" class="sidebar-tool theme-tool" onclick="toggleTheme()">☀️ <span id="sidebarThemeText">ብርሃን ሁነታ</span></button>
+      <button id="sidebarLangBtn" class="sidebar-tool lang-tool" onclick="toggleLanguage()"><span id="sidebarLangText">አማርኛ</span></button>
+      <button id="sidebarThemeBtn" class="sidebar-tool theme-tool" onclick="toggleTheme()"><span id="sidebarThemeText">ብርሃን ሁነታ</span></button>
     </div>
     <div class="sidebar-foot"><div class="user-mini"><div class="avatar" id="miniAvatar">SA</div><div><b id="miniName">Super Admin</b><small id="miniRole" style="display:block;color:var(--muted)">Administrator</small></div></div></div>
   </aside>
   <main class="main">
-    <header class="topbar"><div style="display:flex;align-items:center;gap:10px"><button class="iconbtn menu-toggle" onclick="toggleSidebar()">☰</button><h1 id="pageTitle">Dashboard</h1></div><div class="top-actions"><button id="notificationBtn" class="iconbtn" title="Notifications" onclick="showNotifications()">🔔<span id="notifDot"></span></button><button class="btn danger" onclick="logout()">Logout</button></div></header>
+    <header class="topbar"><div style="display:flex;align-items:center;gap:10px"><button class="iconbtn menu-toggle" aria-label="Menu" title="Menu" onclick="toggleSidebar()"><span id="menuIcon"></span></button><h1 id="pageTitle">Dashboard</h1></div><div class="top-actions"><button id="notificationBtn" class="iconbtn" title="Notifications" aria-label="Notifications" onclick="showNotifications()"><span id="notificationIcon"></span><span id="notifDot"></span></button><button class="btn danger" onclick="logout()">Logout</button></div></header>
     <section id="content" class="content"></section>
   </main>
 </div>
@@ -113,7 +175,7 @@ body.light .nav button:hover{background:#f1f5f9;color:#172033}
 
 <script>
 const KEY='equbflow_local_v3';
-const initial=()=>({settings:{org:'Unity Equb',weeklyAmount:1000,cycle:1,due:'Friday',equbStatus:'active',equbEndDate:'',currency:'ETB',theme:'dark',lang:'en'},members:Array.from({length:12},(_,i)=>({id:'M'+String(i+1).padStart(3,'0'),name:['Abebe Kebede','Hana Ali','Dawit Tesfaye','Mekdes Girma','Yonas Bekele','Selamawit Tadesse','Biruk Alemu','Rahel Worku','Natnael Desta','Mimi Ahmed','Samuel Getachew','Liya Mohammed'][i],phone:'09'+String(10000000+i),active:true})),payments:[],notifications:[],draws:[]});
+const initial=()=>({settings:{org:'Unity Equb',weeklyAmount:1000,cycle:1,due:'Friday',equbStatus:'active',equbEndDate:'',currency:'ETB',theme:'dark',lang:'en'},members:Array.from({length:12},(_,i)=>({id:'M'+String(i+1).padStart(3,'0'),name:['Abebe Kebede','Hana Ali','Dawit Tesfaye','Mekdes Girma','Yonas Bekele','Selamawit Tadesse','Biruk Alemu','Rahel Worku','Natnael Desta','Mimi Ahmed','Samuel Getachew','Liya Mohammed'][i],phone:'09'+String(10000000+i),active:true})),payments:[],notifications:[],draws:[],chats:[]});
 let db=JSON.parse(localStorage.getItem(KEY)||'null')||initial();
 let session=null, loginRole='admin', page='dashboard';
 
@@ -130,7 +192,7 @@ function toast(title,msg){const t=document.getElementById('toast');t.innerHTML='
 
 const AM={
   "Dashboard":"ዳሽቦርድ","Gallery":"ጋለሪ","Members":"አባላት","Payments":"ክፍያዎች","Verification":"ማረጋገጫ",
-  "Equb Draw":"የእጣ ማውጫ","Notifications":"ማሳወቂያዎች","Reports":"ሪፖርቶች","Settings":"ቅንብሮች",
+  "Equb Draw":"የእጣ ማውጫ","Notifications":"ማሳወቂያዎች","Chat":"ውይይት","Reports":"ሪፖርቶች","Settings":"ቅንብሮች",
   "Super Admin":"ዋና አስተዳዳሪ","Admin":"አስተዳዳሪ","User":"ተጠቃሚ","Logout":"ውጣ",
   "Good day, Super Admin":"እንኳን ደህና መጡ፣ ዋና አስተዳዳሪ","Full financial, payment, member and draw overview in one dashboard.":"የገንዘብ፣ የክፍያ፣ የአባላት እና የእጣ ሙሉ መረጃ በአንድ ቦታ።",
   "Money collected — current cycle":"በዚህ ዙር የተሰበሰበ ገንዘብ","Total collected — all cycles":"እስካሁን የተሰበሰበ ገንዘብ",
@@ -184,7 +246,7 @@ const AM={
   "Nothing waiting for verification.":"ለማረጋገጥ የሚጠብቅ ክፍያ የለም።",
   "Updates":"ማሻሻያዎች",
   "Mark all read":"ሁሉንም እንደተነበበ ምልክት አድርግ",
-  "No notifications.":"ማሳወቂያ የለም።",
+  "No notifications.":"ማሳወቂያ የለም።","Chat":"ውይይት","Internal communication":"የውስጥ ግንኙነት","Private communication between Super Admin and Admin only.":"በዋና አስተዳዳሪ እና በአስተዳዳሪ መካከል ብቻ የሚደረግ የግል ግንኙነት።","People":"ሰዎች","Secure internal conversation":"የተጠበቀ የውስጥ ውይይት","Admin-to-Admin chat is disabled.":"አስተዳዳሪ ከአስተዳዳሪ ጋር የሚያደርገው ውይይት ተዘግቷል።","No messages yet. Start the conversation.":"እስካሁን መልዕክት የለም። ውይይቱን ይጀምሩ።","Write a message...":"መልዕክት ይጻፉ...","Send":"ላክ","New chat message":"አዲስ የውይይት መልዕክት",
   "My Dashboard":"የእኔ ዳሽቦርድ",
   "Weekly Payment":"የሳምንቱ ክፍያ",
   "Payment History":"የክፍያ ታሪክ",
@@ -311,7 +373,7 @@ function applyLanguage(){
   const themeText=document.getElementById('sidebarThemeText');
   if(themeText){ const light=db.settings.theme==='light'; themeText.textContent=lang==='am'?(light?'ጨለማ ሁነታ':'ብርሃን ሁነታ'):(light?'Dark mode':'Light mode'); }
   const themeBtn=document.getElementById('sidebarThemeBtn');
-  if(themeBtn) themeBtn.firstChild.textContent=(db.settings.theme==='light'?'🌙 ':'☀️ ');
+  
   document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=lang==='am'?trText(el.dataset.i18n):el.dataset.i18n}); if(lang==='am') setTimeout(translateVisibleUI,0);
 }
 function toggleLanguage(){
@@ -354,9 +416,9 @@ function startNewEqub(){
   save(); render(); toast('New Equb started','Previous winner locks have been cleared.');
 }
 
-function setLoginRole(r){loginRole=r;document.getElementById('adminTab').classList.toggle('active',r==='admin');document.getElementById('userTab').classList.toggle('active',r==='user');renderLoginForm()}
-function renderLoginForm(){const el=document.getElementById('loginForm');if(loginRole==='admin'){el.innerHTML=`<div class="formgrid"><div class="field"><label>Email</label><input id="lemail" value="admin@equb.local"></div><div class="field"><label>Password</label><input id="lpass" type="password" value="admin123"></div></div><button class="btn primary" style="width:100%;margin-top:14px" onclick="loginAdmin()">Sign in as Super Admin</button>`}else{el.innerHTML=`<div class="field"><label>Member</label><select id="lmember">${db.members.filter(m=>m.active).map(m=>`<option value="${m.id}">${esc(m.name)} — ${m.id}</option>`).join('')}</select></div><div class="field" style="margin-top:12px"><label>Password</label><input id="luserpass" type="password" value="123456"></div><button class="btn primary" style="width:100%;margin-top:14px" onclick="loginUser()">Sign in as Member</button>`}}
-function loginAdmin(){session={role:'admin',id:'ADMIN',name:'Super Admin'};startApp()}
+function setLoginRole(r){loginRole=r;document.getElementById('adminTab').classList.toggle('active',r==='admin');document.getElementById('managerTab').classList.toggle('active',r==='manager');document.getElementById('userTab').classList.toggle('active',r==='user');renderLoginForm()}
+function renderLoginForm(){const el=document.getElementById('loginForm');if(loginRole==='admin'||loginRole==='manager'){const isSuper=loginRole==='admin';el.innerHTML=`<div class="formgrid"><div class="field"><label>Email</label><input id="lemail" value="${isSuper?'superadmin@equb.local':'admin@equb.local'}"></div><div class="field"><label>Password</label><input id="lpass" type="password" value="admin123"></div></div><button class="btn primary" style="width:100%;margin-top:14px" onclick="loginAdmin()">Sign in as ${isSuper?'Super Admin':'Admin'}</button>`}else{el.innerHTML=`<div class="field"><label>Member</label><select id="lmember">${db.members.filter(m=>m.active).map(m=>`<option value="${m.id}">${esc(m.name)} — ${m.id}</option>`).join('')}</select></div><div class="field" style="margin-top:12px"><label>Password</label><input id="luserpass" type="password" value="123456"></div><button class="btn primary" style="width:100%;margin-top:14px" onclick="loginUser()">Sign in as Member</button>`}}
+function loginAdmin(){const isSuper=loginRole==='admin';session={role:isSuper?'admin':'manager',id:isSuper?'SUPER_ADMIN':'ADMIN_001',name:isSuper?'Super Admin':'Admin'};startApp()}
 function loginUser(){const id=document.getElementById('lmember').value;const m=member(id);if(!m)return;session={role:'user',id,name:m.name};startApp()}
 function startApp(){document.getElementById('login').classList.add('hidden');document.getElementById('app').classList.remove('hidden');page=session.role==='admin'?'dashboard':'userDashboard';buildNav();render();toast('Welcome',session.name)}
 function logout(){session=null;document.getElementById('app').classList.add('hidden');document.getElementById('login').classList.remove('hidden');renderLoginForm()}
@@ -364,10 +426,33 @@ function toggleSidebar(){
   document.getElementById('sidebar').classList.toggle('open');
   document.getElementById('sidebarOverlay').classList.toggle('open');
 }
-function buildNav(){const nav=document.getElementById('nav');const admin=[['dashboard','⌂','Dashboard'],['members','👥','Members'],['payments','💳','Payments'],['verification','✓','Verification'],['draw','🎰','Equb Draw'],['notifications','🔔','Notifications'],['reports','📊','Reports'],['settings','⚙','Settings']];const user=[['userDashboard','⌂','My Dashboard'],['myPayment','💳','Weekly Payment'],['history','📋','Payment History'],['notifications','🔔','Notifications'],['profile','👤','My Profile']];const arr=session.role==='admin'?admin:user;nav.innerHTML=arr.map(x=>`<button class="${page===x[0]?'active':''}" onclick="go('${x[0]}')"><span class="ico">${x[1]}</span>${x[2]}</button>`).join('');document.getElementById('brandSub').textContent=session.role==='admin'?'Super Admin':'Member Portal';document.getElementById('miniName').textContent=session.name;document.getElementById('miniRole').textContent=session.role==='admin'?'Administrator':'Member';document.getElementById('miniAvatar').textContent=session.role==='admin'?'SA':session.name.split(' ').map(x=>x[0]).slice(0,2).join('')}
+function iconSvg(name){
+ const paths={
+  dashboard:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+  members:'<circle cx="9" cy="8" r="3"/><path d="M3.5 19c.7-3.1 2.5-4.7 5.5-4.7s4.8 1.6 5.5 4.7"/><path d="M16 6.2a2.7 2.7 0 0 1 0 5.3M17 14.4c1.9.5 3.1 1.8 3.6 3.8"/>',
+  payments:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M7 14h4"/>',
+  verification:'<path d="M5 12l4 4L19 6"/><circle cx="12" cy="12" r="9"/>',
+  draw:'<path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="8"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/>',
+  notifications:'<path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/>',
+  chat:'<path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/>',
+  reports:'<path d="M5 20V10M12 20V4M19 20v-7"/><path d="M3 20h18"/>',
+  settings:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20h-2.6v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H6v-2.6h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V5h2.6v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1v2.6h-.1a1.7 1.7 0 0 0-1.6 1z"/>',
+  home:'<path d="M3 11.5L12 4l9 7.5"/><path d="M5 10v10h14V10M9 20v-6h6v6"/>',
+  wallet:'<path d="M4 6h15a2 2 0 0 1 2 2v10H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M3 8h16M16 13h3"/><circle cx="16" cy="13" r=".7" fill="currentColor" stroke="none"/>',
+  history:'<path d="M4 5v5h5"/><path d="M5.5 15a8 8 0 1 0 1.1-8.9L4 10"/><path d="M12 8v4l2.5 1.5"/>',
+  profile:'<circle cx="12" cy="8" r="3.2"/><path d="M5 20c.8-3.8 3.1-5.7 7-5.7s6.2 1.9 7 5.7"/>'
+ };
+ return '<svg viewBox="0 0 24 24" aria-hidden="true">'+(paths[name]||paths.dashboard)+'</svg>';
+}
+function applyHeaderIcons(){
+ const mi=document.getElementById('menuIcon'); if(mi) mi.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
+ const ni=document.getElementById('notificationIcon'); if(ni) ni.innerHTML=iconSvg('notifications');
+}
+function buildNav(){const nav=document.getElementById('nav');const admin=[['dashboard','dashboard','Dashboard'],['members','members','Members'],['payments','payments','Payments'],['verification','verification','Verification'],['draw','draw','Equb Draw'],['notifications','notifications','Notifications'],['chat','chat','Chat'],['reports','reports','Reports'],['settings','settings','Settings']];const user=[['userDashboard','home','My Dashboard'],['myPayment','wallet','Weekly Payment'],['history','history','Payment History'],['notifications','notifications','Notifications'],['profile','profile','My Profile']];const arr=(session.role==='admin'||session.role==='manager')?admin:user;nav.innerHTML=arr.map(x=>`<button class="${page===x[0]?'active':''}" onclick="go('${x[0]}')"><span class="ico">${iconSvg(x[1])}</span><span class="nav-label">${x[2]}</span></button>`).join('');document.getElementById('brandSub').textContent=session.role==='admin'?'Super Admin':session.role==='manager'?'Admin':'Member Portal';document.getElementById('miniName').textContent=session.name;document.getElementById('miniRole').textContent=session.role==='admin'?'Super Administrator':session.role==='manager'?'Administrator':'Member';document.getElementById('miniAvatar').textContent=session.role==='admin'?'SA':session.role==='manager'?'AD':session.name.split(' ').map(x=>x[0]).slice(0,2).join('');applyHeaderIcons()}
 function go(p){page=p;document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('open');buildNav();render()}
-function render(){checkEqubEnd();applyTheme();const titles={dashboard:'Dashboard',members:'Members',payments:'Payments',verification:'Verification',draw:'Equb Draw',notifications:'Notifications',reports:'Reports',settings:'Settings',userDashboard:'My Dashboard',myPayment:'Weekly Payment',history:'Payment History',profile:'My Profile'};document.getElementById('pageTitle').textContent=titles[page]||'EqubFlow';const c=document.getElementById('content');const fn=window['page_'+page];c.innerHTML=fn?fn():'';updateDot();applyLanguage();if((db.settings.lang||'en')==='am')setTimeout(translateVisibleUI,0)}
-function updateDot(){const n=db.notifications.filter(x=>x.target===(session.role==='admin'?'admin':session.id)&&!x.read).length;document.getElementById('notifDot').innerHTML=n?`<i style="position:absolute;background:var(--danger);width:8px;height:8px;border-radius:50%;margin:-25px 0 0 15px"></i>`:''}
+function render(){checkEqubEnd();applyTheme();applyHeaderIcons();const titles={dashboard:'Dashboard',members:'Members',payments:'Payments',verification:'Verification',draw:'Equb Draw',notifications:'Notifications',chat:'Chat',reports:'Reports',settings:'Settings',userDashboard:'My Dashboard',myPayment:'Weekly Payment',history:'Payment History',profile:'My Profile'};document.getElementById('pageTitle').textContent=titles[page]||'EqubFlow';const c=document.getElementById('content');const fn=window['page_'+page];c.innerHTML=fn?fn():'';updateDot();applyLanguage();if((db.settings.lang||'en')==='am')setTimeout(translateVisibleUI,0)}
+function notificationTarget(){return session.role==='admin'?'superadmin':session.role==='manager'?'admin':session.id}
+function updateDot(){const n=db.notifications.filter(x=>x.target===notificationTarget()&&!x.read).length;const el=document.getElementById('notifDot');if(el)el.innerHTML=n?`<span class="notif-count">${n>99?'99+':n}</span>`:''}
 applyLanguage();
 function page_dashboard(){
  const active=activeMembers(), cp=cyclePayments(), paid=cp.filter(p=>p.status==='paid').length, pending=cp.filter(p=>p.status==='pending').length;
@@ -405,7 +490,15 @@ function page_draw(){
  <div class="card"><div class="section-head"><h3>This week's winner</h3><span class="badge neutral">Cycle #${db.settings.cycle}</span></div>${current?`<div class="winner-row"><span><b>🏆 ${esc(current.name)}</b><small style="display:block;color:var(--muted)">${current.memberId} · ${esc(current.at)}</small></span><span class="locked-badge">WINNER</span></div><div class="notice" style="margin-top:12px">The winner of this week is shown to all members on their dashboard.</div>`:'<div class="empty">No winner yet for this week.</div>'}<div class="section-head" style="margin-top:18px"><h3>Locked winners</h3><span class="badge neutral">${locked.length}</span></div>${locked.length?`<div class="winner-list">${locked.map(d=>`<div class="winner-row"><span><b>🏆 ${esc(d.name)}</b><small style="display:block;color:var(--muted)">${d.memberId} · Cycle #${d.cycle} · ${esc(d.at)}</small></span><span class="locked-badge">NO REPEAT</span></div>`).join('')}</div>`:'<div class="empty">No winner is locked yet.</div>'}</div></div>
  <div class="card" style="margin-top:16px"><div class="section-head"><h3>Draw history</h3></div>${db.draws.length?db.draws.slice(0,20).map(d=>`<div class="notice"><b>🏆 #${d.memberId} — ${esc(d.name)}</b><small>Cycle #${d.cycle} · ${esc(d.at)} · ${d.lockedUntilEqubEnd?'Locked until Equb end':''}</small></div>`).join(''):'<div class="empty">No draws yet.</div>'}</div>`;
 }
-function page_notifications(){return `<div class="hero"><div><div class="eyebrow">Updates</div><h2>Notifications</h2><p>Local in-app notifications for ${session.role==='admin'?'the admin':'your account'}.</p></div><button class="btn" onclick="markAllRead()">Mark all read</button></div><div class="card">${noticeRows(100,session.role==='admin'?'admin':session.id,true)}</div>`}
+function page_chat(){
+ if(session.role!=='admin'&&session.role!=='manager')return '<div class="empty">Chat is available only between Super Admin and Admin.</div>';
+ const peer=session.role==='admin'?'Admin':'Super Admin';
+ const msgs=(db.chats||[]).filter(m=>(m.fromRole==='admin'&&m.toRole==='manager')||(m.fromRole==='manager'&&m.toRole==='admin'));
+ return `<div class="hero"><div><div class="eyebrow">Internal communication</div><h2>Chat</h2><p>Private communication between Super Admin and Admin only.</p></div><span class="badge neutral">Admin ↔ Super Admin</span></div><div class="chat-shell"><div class="chat-people"><div class="section-head"><h3>People</h3></div><button class="chat-person active"><span class="chat-avatar">${session.role==='admin'?'AD':'SA'}</span><span><b>${peer}</b><small style="display:block;color:var(--muted)">${session.role==='admin'?'Administrator':'Super Administrator'}</small></span></button><div class="chat-note">Admin-to-Admin chat is disabled.</div></div><div class="chat-main"><div class="chat-head"><div><b>${peer}</b><div style="font-size:11px;color:var(--muted)">Secure internal conversation</div></div><span class="badge paid">Active</span></div><div id="chatMessages" class="chat-messages">${msgs.length?msgs.map(m=>`<div class="chat-msg ${m.fromRole===session.role?'mine':''}"><b>${m.fromRole==='admin'?'Super Admin':'Admin'}</b><div>${esc(m.text)}</div><small>${new Date(m.at).toLocaleString()}</small></div>`).join(''):'<div class="empty">No messages yet. Start the conversation.</div>'}</div><form class="chat-compose" onsubmit="sendChat(event)"><input id="chatInput" autocomplete="off" placeholder="Write a message..."><button class="btn primary" type="submit">Send</button></form></div></div>`;
+}
+function sendChat(e){e.preventDefault();if(session.role!=='admin'&&session.role!=='manager')return;const input=document.getElementById('chatInput');const text=input?.value.trim();if(!text)return;db.chats=db.chats||[];db.chats.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),fromRole:session.role,toRole:session.role==='admin'?'manager':'admin',text,at:Date.now()});const target=session.role==='admin'?'admin':'superadmin';addNotif(target,'New chat message',session.name+': '+text,'info');save();render();setTimeout(()=>{const box=document.getElementById('chatMessages');if(box)box.scrollTop=box.scrollHeight},0)}
+
+function page_notifications(){return `<div class="hero"><div><div class="eyebrow">Updates</div><h2>Notifications</h2><p>Local in-app notifications for ${session.role==='admin'?'the admin':'your account'}.</p></div><button class="btn" onclick="markAllRead()">Mark all read</button></div><div class="card">${noticeRows(100,notificationTarget(),true)}</div>`}
 function noticeRows(limit,target,full=false){let ns=db.notifications.filter(n=>n.target===target).slice(0,limit);if(!ns.length)return '<div class="empty">No notifications.</div>';return `<div class="notice-list">${ns.map(n=>`<div class="notice ${n.read?'':'unread'}" onclick="readNotif('${n.id}')"><b>${esc(n.title)}</b><div>${esc(n.message)}</div><small>${new Date(n.createdAt).toLocaleString()}</small></div>`).join('')}</div>`}
 function page_reports(){
  const total=confirmedTotal(), all=allConfirmedTotal(), expected=expectedTotal(), pending=pendingTotal(), paid=cyclePayments().filter(p=>p.status==='paid').length;
@@ -436,7 +529,7 @@ function page_profile(){const m=userData();return `<div class="hero"><div><div c
 
 function memberModal(id){const m=id?member(id):{id:'',name:'',phone:'',active:true};openModal(`<div class="modal-head"><h3>${id?'Edit member':'Add member'}</h3><button class="iconbtn" onclick="closeModal()">×</button></div><div class="formgrid"><div class="field"><label>Member ID</label><input id="mid" value="${esc(m.id)}" ${id?'disabled':''} placeholder="M013"></div><div class="field"><label>Full name</label><input id="mname" value="${esc(m.name)}"></div><div class="field"><label>Phone</label><input id="mphone" value="${esc(m.phone)}"></div><div class="field"><label>Status</label><select id="mactive"><option value="true" ${m.active?'selected':''}>Active</option><option value="false" ${!m.active?'selected':''}>Inactive</option></select></div></div><button class="btn primary" style="margin-top:15px" onclick="saveMember('${id||''}')">Save member</button>`)}
 function saveMember(id){const data={id:(document.getElementById('mid').value||'M'+String(db.members.length+1).padStart(3,'0')).toUpperCase(),name:document.getElementById('mname').value.trim(),phone:document.getElementById('mphone').value.trim(),active:document.getElementById('mactive').value==='true'};if(!data.name)return toast('Missing name','Enter the member name.');if(!id){if(db.members.length>=100)return toast('Limit reached','Maximum is 100 members.');db.members.push(data)}else Object.assign(member(id),data,{id});save();closeModal();render();toast('Saved','Member updated.')}
-function submitPayment(){const m=userData(),amount=Number(document.getElementById('pamount').value),bank=document.getElementById('pbank').value,ref=document.getElementById('pref').value.trim(),date=document.getElementById('pdate').value,file=document.getElementById('pslip').files[0];if(!amount||!ref||!date)return toast('Incomplete','Please complete amount, reference and date.');if(!file)return toast('Slip required','Please select the bank slip image.');if(file.size>2*1024*1024)return toast('File too large','For this local prototype use an image under 2MB.');const reader=new FileReader();reader.onload=()=>{const old=paymentFor(m.id);if(old)db.payments=db.payments.filter(x=>x.id!==old.id);const p={id:'P'+Date.now(),memberId:m.id,cycle:db.settings.cycle,amount,bank,ref,paidAt:new Date(date).getTime(),submittedAt:Date.now(),status:'pending',slipData:reader.result};db.payments.unshift(p);addNotif('admin','New Payment Slip',m.name+' submitted a payment slip for '+money(amount)+'.');save();go('userDashboard');toast('Submitted','Your payment is waiting for verification.')};reader.readAsDataURL(file)}
+function submitPayment(){const m=userData(),amount=Number(document.getElementById('pamount').value),bank=document.getElementById('pbank').value,ref=document.getElementById('pref').value.trim(),date=document.getElementById('pdate').value,file=document.getElementById('pslip').files[0];if(!amount||!ref||!date)return toast('Incomplete','Please complete amount, reference and date.');if(!file)return toast('Slip required','Please select the bank slip image.');if(file.size>2*1024*1024)return toast('File too large','For this local prototype use an image under 2MB.');const reader=new FileReader();reader.onload=()=>{const old=paymentFor(m.id);if(old)db.payments=db.payments.filter(x=>x.id!==old.id);const p={id:'P'+Date.now(),memberId:m.id,cycle:db.settings.cycle,amount,bank,ref,paidAt:new Date(date).getTime(),submittedAt:Date.now(),status:'pending',slipData:reader.result};db.payments.unshift(p);addNotif('superadmin','New Payment Slip',m.name+' submitted a payment slip for '+money(amount)+'.');save();go('userDashboard');toast('Submitted','Your payment is waiting for verification.')};reader.readAsDataURL(file)}
 function previewSlip(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>document.getElementById('slipPreview').innerHTML=`<img class="slip-preview" src="${r.result}" alt="Payment slip preview">`;r.readAsDataURL(f)}
 function openPayment(id){const p=db.payments.find(x=>x.id===id);if(!p)return;const m=member(p.memberId);openModal(`<div class="modal-head"><h3>Payment Review</h3><button class="iconbtn" onclick="closeModal()">×</button></div><div class="grid two"><div><div class="notice"><b>${esc(m?.name||p.memberId)}</b><div>${p.memberId} · Cycle #${p.cycle}</div><div>${money(p.amount)} · ${esc(p.bank||'-')}</div><div>Ref: ${esc(p.ref||'-')}</div><div>Status: ${statusBadge(p.status)}</div></div>${p.status==='pending'?`<div style="display:flex;gap:8px;margin-top:12px"><button class="btn success" onclick="verifyPayment('${p.id}')">✓ Confirm</button><button class="btn danger" onclick="rejectPayment('${p.id}')">✕ Reject</button></div>`:''}</div><div>${p.slipData?`<img class="slip-preview" src="${p.slipData}" alt="Bank slip">`:'<div class="empty">No real slip image in this record.</div>'}</div></div>`)}
 function verifyPayment(id){const p=db.payments.find(x=>x.id===id);if(!p)return;p.status='paid';p.verifiedAt=Date.now();p.verifiedBy='ADMIN';addNotif(p.memberId,'Payment Confirmed','Your payment for Cycle #'+p.cycle+' has been confirmed.','success');save();closeModal();render();toast('Confirmed','Member is now Paid.')}
@@ -458,7 +551,7 @@ function runDraw(){
      num.textContent=m.id.replace('M','');
      win.textContent='🏆 '+m.name+' — '+m.id;
      db.draws.unshift({memberId:m.id,name:m.name,cycle:db.settings.cycle,at:now(),lockedUntilEqubEnd:true});
-     addNotif('admin','Draw completed','Winner: '+m.name+' ('+m.id+') for Cycle #'+db.settings.cycle+'. Winner is locked until the Equb ends.','success');
+     addNotif('superadmin','Draw completed','Winner: '+m.name+' ('+m.id+') for Cycle #'+db.settings.cycle+'. Winner is locked until the Equb ends.','success');
      addNotif(m.id,'You won the Equb draw','Congratulations! You won today’s draw. You are locked from future draws until this Equb ends.','success');
      save();
      toast('Draw complete',m.name+' is now the winner for this week and cannot be selected again in this Equb.');
@@ -467,7 +560,7 @@ function runDraw(){
  },75);
 }
 function readNotif(id){const n=db.notifications.find(x=>x.id===id);if(n)n.read=true;save();render()}
-function markAllRead(){db.notifications.filter(n=>n.target===(session.role==='admin'?'admin':session.id)).forEach(n=>n.read=true);save();render()}
+function markAllRead(){db.notifications.filter(n=>n.target===(notificationTarget())).forEach(n=>n.read=true);save();render()}
 function showNotifications(){go('notifications')}
 function saveSettings(){db.settings.org=document.getElementById('sorg').value.trim()||'Unity Equb';db.settings.weeklyAmount=Number(document.getElementById('samt').value)||1000;db.settings.cycle=Number(document.getElementById('scycle').value)||1;db.settings.due=document.getElementById('sdue').value.trim()||'Friday';db.settings.equbEndDate=document.getElementById('send').value||'';db.settings.equbStatus=document.getElementById('sstatus').value;db.settings.lang=document.getElementById('slang').value;save();checkEqubEnd();applyTheme();render();toast('Saved','Settings updated locally.')}
 function openModal(html){document.getElementById('modalBox').innerHTML=html;document.getElementById('modal').classList.remove('hidden')}
