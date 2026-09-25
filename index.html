@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>EqubFlow — Local Prototype</title>
@@ -8,10 +11,44 @@
 <style>
 :root{--bg:#080b12;--panel:#101521;--panel2:#151b29;--line:#232c3d;--text:#eef3fb;--muted:#8e9ab0;--accent:#7c5cff;--accent2:#20d6a1;--warn:#f7b955;--danger:#ff6678;--shadow:0 18px 50px rgba(0,0,0,.28);--r:18px}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 10% -10%,rgba(124,92,255,.16),transparent 60%),radial-gradient(700px 500px at 100% 0,rgba(32,214,161,.08),transparent 55%),var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}
-.app{min-height:100vh;display:flex}.sidebar{width:260px;background:rgba(10,14,23,.92);border-right:1px solid var(--line);padding:18px;position:fixed;inset:0 auto 0 0;z-index:20;backdrop-filter:blur(18px)}.brand{display:flex;align-items:center;gap:12px;padding:8px 8px 24px}.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#9d87ff);font-weight:900;box-shadow:0 10px 30px rgba(124,92,255,.3)}.brand b{font-size:17px}.brand small{display:block;color:var(--muted);font-size:11px}.nav{display:grid;gap:6px}.nav button{background:transparent;color:#aeb9cc;text-align:left;padding:12px 13px;border-radius:12px;display:flex;align-items:center;gap:11px}.nav button:hover,.nav button.active{background:#171d2b;color:#fff}.nav .ico{width:22px;text-align:center}.sidebar-foot{position:absolute;bottom:18px;left:18px;right:18px}.user-mini{border:1px solid var(--line);background:#0e141f;padding:12px;border-radius:14px;display:flex;gap:10px;align-items:center}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#20283a;color:#fff;font-weight:800}.main{margin-left:260px;width:calc(100% - 260px);min-height:100vh}.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;background:rgba(8,11,18,.78);backdrop-filter:blur(18px);z-index:10}.topbar h1{font-size:20px;margin:0}.top-actions{display:flex;gap:10px;align-items:center}.iconbtn,.btn{border:1px solid var(--line);background:#121925;color:#eaf0f8;border-radius:12px;padding:10px 13px}.iconbtn{width:42px;height:42px;padding:0}.btn.primary{background:linear-gradient(135deg,var(--accent),#6546e9);border-color:transparent}.btn.success{background:rgba(32,214,161,.13);color:#5ff0c5;border-color:rgba(32,214,161,.3)}.btn.danger{background:rgba(255,102,120,.12);color:#ff8796;border-color:rgba(255,102,120,.28)}.btn.warn{background:rgba(247,185,85,.12);color:#ffd27c;border-color:rgba(247,185,85,.25)}.content{padding:28px;max-width:1500px;margin:auto}.hero{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:24px}.eyebrow{color:#9d87ff;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800}.hero h2{font-size:30px;line-height:1.15;margin:6px 0}.hero p{color:var(--muted);margin:0}.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:linear-gradient(180deg,rgba(18,24,37,.96),rgba(12,17,27,.96));border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px}.stat{min-height:125px}.stat .label{color:var(--muted);font-size:12px}.stat .num{font-size:30px;font-weight:850;margin:10px 0 4px}.stat .sub{color:#7e8aa0;font-size:12px}.two{grid-template-columns:1.25fr .75fr}.three{grid-template-columns:repeat(3,1fr)}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.section-head h3{margin:0;font-size:16px}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:13px 10px;border-bottom:1px solid #202838;text-align:left;white-space:nowrap}.table th{color:#7f8ba0;font-size:11px;text-transform:uppercase;letter-spacing:.08em}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800}.paid{background:rgba(32,214,161,.11);color:#5ff0c5}.pending{background:rgba(247,185,85,.1);color:#ffd27c}.rejected{background:rgba(255,102,120,.1);color:#ff8796}.neutral{background:#1b2331;color:#aab5c7}.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.field{display:grid;gap:6px}.field label{font-size:11px;color:#8d99ad}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#0b111b;color:#f2f6fc;border-radius:11px;padding:11px 12px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#6e55dd;box-shadow:0 0 0 3px rgba(124,92,255,.12)}.toolbar{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:14px}.search{flex:1;min-width:180px}.empty{text-align:center;color:var(--muted);padding:35px 10px}.notice-list{display:grid;gap:10px}.notice{border:1px solid var(--line);background:#0d131e;padding:13px;border-radius:14px}.notice.unread{border-color:rgba(124,92,255,.45);background:rgba(124,92,255,.06)}.notice b{display:block}.notice small{color:var(--muted)}.drawbox{text-align:center;padding:34px;border-radius:20px;background:radial-gradient(circle at 50% 20%,rgba(124,92,255,.22),transparent 55%),#0c121d;border:1px solid var(--line)}.drawnum{font-size:82px;font-weight:900;letter-spacing:-.05em;line-height:1;margin:18px}.winner{font-size:20px;color:#5ff0c5;font-weight:850}.login{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(600px 400px at 20% 10%,rgba(124,92,255,.2),transparent 65%),var(--bg)}.login-card{width:min(470px,100%);padding:30px;border:1px solid var(--line);background:rgba(15,21,33,.94);border-radius:26px;box-shadow:var(--shadow)}.login-brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}.demo-switch{display:flex;gap:8px;background:#0a1019;padding:5px;border:1px solid var(--line);border-radius:13px;margin:14px 0}.demo-switch button{flex:1;background:transparent;color:#8d99ad;padding:9px;border-radius:9px}.demo-switch button.active{background:#1b2231;color:#fff}.login-note{color:#7e8aa0;font-size:12px;margin-top:14px}.mobile-menu{display:none}.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;display:grid;place-items:center;padding:18px}.modal-box{width:min(620px,100%);max-height:90vh;overflow:auto;background:#101621;border:1px solid var(--line);border-radius:22px;padding:20px}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.slip-preview{width:100%;max-height:360px;object-fit:contain;background:#080b12;border-radius:12px;border:1px solid var(--line)}.toast{position:fixed;right:20px;bottom:20px;z-index:80;background:#151d2b;border:1px solid var(--line);box-shadow:var(--shadow);padding:13px 16px;border-radius:13px;max-width:340px}.toast b{display:block}.menu-toggle{display:none}
-@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.two,.three{grid-template-columns:1fr}.sidebar{transform:translateX(-100%);transition:.2s}.sidebar.open{transform:none}.main{margin-left:0;width:100%}.menu-toggle{display:block}.topbar{padding:0 16px}.content{padding:18px}}
+.app{min-height:100vh;display:flex}.sidebar{width:260px;background:rgba(10,14,23,.92);border-right:1px solid var(--line);padding:18px;position:fixed;inset:0 auto 0 0;z-index:20;backdrop-filter:blur(18px);transform:translateX(-100%)} .sidebar.open{transform:translateX(0)}.brand{display:flex;align-items:center;gap:12px;padding:8px 8px 24px}.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#9d87ff);font-weight:900;box-shadow:0 10px 30px rgba(124,92,255,.3)}.brand b{font-size:17px}.brand small{display:block;color:var(--muted);font-size:11px}.nav{display:grid;gap:6px}.nav button{background:transparent;color:#aeb9cc;text-align:left;padding:12px 13px;border-radius:12px;display:flex;align-items:center;gap:11px}.nav button:hover,.nav button.active{background:#171d2b;color:#fff}.nav .ico{width:22px;text-align:center}.sidebar-foot{position:absolute;bottom:18px;left:18px;right:18px}.user-mini{border:1px solid var(--line);background:#0e141f;padding:12px;border-radius:14px;display:flex;gap:10px;align-items:center}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#20283a;color:#fff;font-weight:800}.main{margin-left:0;width:100%;min-height:100vh}.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;background:rgba(8,11,18,.78);backdrop-filter:blur(18px);z-index:10}.topbar h1{font-size:20px;margin:0}.top-actions{display:flex;gap:10px;align-items:center}.iconbtn,.btn{border:1px solid var(--line);background:#121925;color:#eaf0f8;border-radius:12px;padding:10px 13px}.iconbtn{width:42px;height:42px;padding:0}.btn.primary{background:linear-gradient(135deg,var(--accent),#6546e9);border-color:transparent}.btn.success{background:rgba(32,214,161,.13);color:#5ff0c5;border-color:rgba(32,214,161,.3)}.btn.danger{background:rgba(255,102,120,.12);color:#ff8796;border-color:rgba(255,102,120,.28)}.btn.warn{background:rgba(247,185,85,.12);color:#ffd27c;border-color:rgba(247,185,85,.25)}.content{padding:28px;max-width:1500px;margin:auto}.hero{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:24px}.eyebrow{color:#9d87ff;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800}.hero h2{font-size:30px;line-height:1.15;margin:6px 0}.hero p{color:var(--muted);margin:0}.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:linear-gradient(180deg,rgba(18,24,37,.96),rgba(12,17,27,.96));border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px}.stat{min-height:125px}.stat .label{color:var(--muted);font-size:12px}.stat .num{font-size:30px;font-weight:850;margin:10px 0 4px}.stat .sub{color:#7e8aa0;font-size:12px}.two{grid-template-columns:1.25fr .75fr}.three{grid-template-columns:repeat(3,1fr)}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.section-head h3{margin:0;font-size:16px}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:13px 10px;border-bottom:1px solid #202838;text-align:left;white-space:nowrap}.table th{color:#7f8ba0;font-size:11px;text-transform:uppercase;letter-spacing:.08em}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800}.paid{background:rgba(32,214,161,.11);color:#5ff0c5}.pending{background:rgba(247,185,85,.1);color:#ffd27c}.rejected{background:rgba(255,102,120,.1);color:#ff8796}.neutral{background:#1b2331;color:#aab5c7}.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.field{display:grid;gap:6px}.field label{font-size:11px;color:#8d99ad}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#0b111b;color:#f2f6fc;border-radius:11px;padding:11px 12px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#6e55dd;box-shadow:0 0 0 3px rgba(124,92,255,.12)}.toolbar{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:14px}.search{flex:1;min-width:180px}.empty{text-align:center;color:var(--muted);padding:35px 10px}.notice-list{display:grid;gap:10px}.notice{border:1px solid var(--line);background:#0d131e;padding:13px;border-radius:14px}.notice.unread{border-color:rgba(124,92,255,.45);background:rgba(124,92,255,.06)}.notice b{display:block}.notice small{color:var(--muted)}.drawbox{text-align:center;padding:34px;border-radius:20px;background:radial-gradient(circle at 50% 20%,rgba(124,92,255,.22),transparent 55%),#0c121d;border:1px solid var(--line)}.drawnum{font-size:82px;font-weight:900;letter-spacing:-.05em;line-height:1;margin:18px}.winner{font-size:20px;color:#5ff0c5;font-weight:850}.login{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(600px 400px at 20% 10%,rgba(124,92,255,.2),transparent 65%),var(--bg)}.login-card{width:min(470px,100%);padding:30px;border:1px solid var(--line);background:rgba(15,21,33,.94);border-radius:26px;box-shadow:var(--shadow)}.login-brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}.demo-switch{display:flex;gap:8px;background:#0a1019;padding:5px;border:1px solid var(--line);border-radius:13px;margin:14px 0}.demo-switch button{flex:1;background:transparent;color:#8d99ad;padding:9px;border-radius:9px}.demo-switch button.active{background:#1b2231;color:#fff}.login-note{color:#7e8aa0;font-size:12px;margin-top:14px}.mobile-menu{display:none}.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;display:grid;place-items:center;padding:18px}.modal-box{width:min(620px,100%);max-height:90vh;overflow:auto;background:#101621;border:1px solid var(--line);border-radius:22px;padding:20px}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.slip-preview{width:100%;max-height:360px;object-fit:contain;background:#080b12;border-radius:12px;border:1px solid var(--line)}.toast{position:fixed;right:20px;bottom:20px;z-index:80;background:#151d2b;border:1px solid var(--line);box-shadow:var(--shadow);padding:13px 16px;border-radius:13px;max-width:340px}.toast b{display:block}.menu-toggle{display:block}
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.two,.three{grid-template-columns:1fr}.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0;width:100%}.menu-toggle{display:block}.topbar{padding:0 16px}.content{padding:18px}}
 @media(max-width:620px){.stats{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.hero{display:block}.hero .btn{margin-top:15px}.topbar h1{font-size:17px}.content{padding:14px}.card{padding:15px}.drawnum{font-size:62px}}
-</style>
+
+/* ===== V2 MODERN UX ===== */
+:root{--success:#20d6a1;--glass:rgba(255,255,255,.035)}
+body.light{--bg:#f4f7fb;--panel:#fff;--panel2:#f7f9fc;--line:#dce3ee;--text:#172033;--muted:#667085;--shadow:0 14px 35px rgba(35,48,75,.10);background:radial-gradient(900px 500px at 10% -10%,rgba(124,92,255,.10),transparent 60%),#f4f7fb}
+body.light .sidebar,body.light .topbar{background:rgba(255,255,255,.88)}
+body.light .card{background:linear-gradient(180deg,#fff,#f9fbfe)}
+body.light .field input,body.light .field select,body.light .field textarea,body.light .iconbtn,body.light .btn{background:#fff;color:var(--text)}
+body.light .table th,body.light .table td{border-color:#e8edf4}
+body.light .notice{background:#f8fafd}
+body.light .drawbox{background:radial-gradient(circle at 50% 20%,rgba(124,92,255,.12),transparent 55%),#f8faff}
+body.light .nav button{color:#667085}
+body.light .nav button:hover,body.light .nav button.active{background:#eef1f8;color:#172033}
+.theme-icon{font-size:17px}
+.sidebar{transition:transform .22s ease}
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:15;opacity:0;pointer-events:none;transition:.2s;backdrop-filter:blur(3px)}
+.sidebar-overlay.open{opacity:1;pointer-events:auto}
+.money-card{position:relative;overflow:hidden}
+.money-card:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-70px;top:-80px;background:rgba(124,92,255,.10)}
+.money-card .num{font-size:28px}
+.financial-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.progress{height:7px;background:#1d2636;border-radius:99px;overflow:hidden;margin-top:10px}
+body.light .progress{background:#e7ecf4}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--success));border-radius:99px}
+.locked{opacity:.62}
+.locked-badge{color:#ff8796;background:rgba(255,102,120,.10);border:1px solid rgba(255,102,120,.2);padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800}
+.winner-list{display:grid;gap:9px}
+.winner-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--glass)}
+.menu-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;padding:15px 12px 5px}
+@media(max-width:1050px){.financial-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.financial-grid{grid-template-columns:1fr}}
+
+body.amharic{font-family:"Noto Sans Ethiopic","Noto Sans",Arial,sans-serif}
+body.amharic .num,body.amharic input[type=number]{font-family:Arial,"Noto Sans Ethiopic",sans-serif}
+body.amharic .eyebrow{letter-spacing:.03em}
+.lang-btn{min-width:92px}
 </head>
 <body>
 <div id="login" class="login">
@@ -26,6 +63,7 @@
   </div>
 </div>
 
+<div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
 <div id="app" class="app hidden">
   <aside id="sidebar" class="sidebar">
     <div class="brand"><div class="logo">E</div><div><b>EqubFlow</b><small id="brandSub">Super Admin</small></div></div>
@@ -33,7 +71,7 @@
     <div class="sidebar-foot"><div class="user-mini"><div class="avatar" id="miniAvatar">SA</div><div><b id="miniName">Super Admin</b><small id="miniRole" style="display:block;color:var(--muted)">Administrator</small></div></div></div>
   </aside>
   <main class="main">
-    <header class="topbar"><div style="display:flex;align-items:center;gap:10px"><button class="iconbtn menu-toggle" onclick="toggleSidebar()">☰</button><h1 id="pageTitle">Dashboard</h1></div><div class="top-actions"><button class="iconbtn" onclick="showNotifications()">🔔<span id="notifDot"></span></button><button class="btn" onclick="logout()">Logout</button></div></header>
+    <header class="topbar"><div style="display:flex;align-items:center;gap:10px"><button class="iconbtn menu-toggle" onclick="toggleSidebar()">☰</button><h1 id="pageTitle">Dashboard</h1></div><div class="top-actions"><button id="langBtn" class="btn lang-btn" onclick="toggleLanguage()">አማርኛ</button><button class="iconbtn" title="Toggle theme" onclick="toggleTheme()"><span id="themeIcon" class="theme-icon">☾</span></button><button class="iconbtn" onclick="showNotifications()">🔔<span id="notifDot"></span></button><button class="btn" onclick="logout()">Logout</button></div></header>
     <section id="content" class="content"></section>
   </main>
 </div>
@@ -43,7 +81,7 @@
 
 <script>
 const KEY='equbflow_local_v3';
-const initial=()=>({settings:{org:'Unity Equb',weeklyAmount:1000,cycle:1,due:'Friday'},members:Array.from({length:12},(_,i)=>({id:'M'+String(i+1).padStart(3,'0'),name:['Abebe Kebede','Hana Ali','Dawit Tesfaye','Mekdes Girma','Yonas Bekele','Selamawit Tadesse','Biruk Alemu','Rahel Worku','Natnael Desta','Mimi Ahmed','Samuel Getachew','Liya Mohammed'][i],phone:'09'+String(10000000+i),active:true})),payments:[],notifications:[],draws:[]});
+const initial=()=>({settings:{org:'Unity Equb',weeklyAmount:1000,cycle:1,due:'Friday',equbStatus:'active',equbEndDate:'',currency:'ETB',theme:'dark',lang:'en'},members:Array.from({length:12},(_,i)=>({id:'M'+String(i+1).padStart(3,'0'),name:['Abebe Kebede','Hana Ali','Dawit Tesfaye','Mekdes Girma','Yonas Bekele','Selamawit Tadesse','Biruk Alemu','Rahel Worku','Natnael Desta','Mimi Ahmed','Samuel Getachew','Liya Mohammed'][i],phone:'09'+String(10000000+i),active:true})),payments:[],notifications:[],draws:[]});
 let db=JSON.parse(localStorage.getItem(KEY)||'null')||initial();
 let session=null, loginRole='admin', page='dashboard';
 
@@ -56,29 +94,288 @@ function paymentFor(mid){return db.payments.find(p=>p.memberId===mid&&p.cycle===
 function statusBadge(s){let c=s==='paid'?'paid':s==='rejected'?'rejected':s==='pending'?'pending':'neutral';let t=s==='paid'?'Paid':s==='rejected'?'Rejected':s==='pending'?'Waiting':'Not submitted';return `<span class="badge ${c}">${s==='paid'?'●':s==='rejected'?'●':'●'} ${t}</span>`}
 function addNotif(target,title,message,type='info'){db.notifications.unshift({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),target,title,message,type,read:false,createdAt:Date.now()});save()}
 function toast(title,msg){const t=document.getElementById('toast');t.innerHTML='<b>'+esc(title)+'</b><span style="color:var(--muted)">'+esc(msg)+'</span>';t.classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.add('hidden'),3200)}
+
+
+const AM={
+  "Dashboard":"ዳሽቦርድ","Members":"አባላት","Payments":"ክፍያዎች","Verification":"ማረጋገጫ",
+  "Equb Draw":"የእጣ ማውጫ","Notifications":"ማሳወቂያዎች","Reports":"ሪፖርቶች","Settings":"ቅንብሮች",
+  "Super Admin":"ዋና አስተዳዳሪ","Admin":"አስተዳዳሪ","User":"ተጠቃሚ","Logout":"ውጣ",
+  "Good day, Super Admin":"እንኳን ደህና መጡ፣ ዋና አስተዳዳሪ","Full financial, payment, member and draw overview in one dashboard.":"የገንዘብ፣ የክፍያ፣ የአባላት እና የእጣ ሙሉ መረጃ በአንድ ቦታ።",
+  "Money collected — current cycle":"በዚህ ዙር የተሰበሰበ ገንዘብ","Total collected — all cycles":"እስካሁን የተሰበሰበ ገንዘብ",
+  "Expected this cycle":"በዚህ ዙር መግባት የሚገባው","Outstanding":"ያልተሰበሰበ ገንዘብ",
+  "Paid":"ተከፍሏል","Waiting review":"ማረጋገጫ የሚጠብቅ","Active members":"ንቁ አባላት",
+  "Winner locks":"የአሸናፊ መከልከያ","Collection progress":"የገንዘብ ማሰባሰብ ሂደት",
+  "Recent payments":"የቅርብ ጊዜ ክፍያዎች","Recent notifications":"የቅርብ ጊዜ ማሳወቂያዎች",
+  "View all":"ሁሉንም እይ","Open":"ክፈት","Review payments →":"ክፍያዎችን አረጋግጥ →",
+  "Draw winners locked in this Equb":"በዚህ እቁብ የተከለከሉ አሸናፊዎች",
+  "Manage draw":"እጣውን አስተዳድር","LOCKED":"ተቆልፏል","NO REPEAT":"ድግግሞሽ የለም",
+  "Reports":"ሪፖርቶች","Print":"አትም","Configuration":"ቅንብር","Equb & financial settings":"የእቁብ እና የገንዘብ ቅንብር",
+  "Organization name":"የድርጅት ስም","Weekly amount (ETB)":"የሳምንት ክፍያ (ብር)",
+  "Current cycle":"የአሁኑ ዙር","Payment deadline":"የክፍያ መጨረሻ ቀን","Equb end date":"የእቁብ መጨረሻ ቀን",
+  "Equb status":"የእቁብ ሁኔታ","Active":"እየተካሄደ ነው","Ended":"ተጠናቋል",
+  "Save settings":"ቅንብሩን አስቀምጥ","Toggle dark/light mode":"ጨለማ/ብርሃን ሁነታ ቀይር",
+  "Start New Equb / Clear winner locks":"አዲስ እቁብ ጀምር / የአሸናፊ መከልከያን አጥፋ",
+  "Reset local demo":"የሙከራ መረጃን አጥፋ",
+  "Rules currently active":"አሁን የሚሰሩ ህጎች",
+  "Confirmed money only":"የተረጋገጠ ገንዘብ ብቻ","No-repeat draw":"ያልተደጋገመ እጣ",
+  "Notifications":"ማሳወቂያዎች","Equb Draw":"የእጣ ማውጫ",
+  "Weekly draw":"የሳምንቱ እጣ","A winner can":"አሸናፊ ከሆነ በኋላ",
+  "Eligible Paid members":"እጣ ለመውጣት የሚችሉ የተከፈላቸው አባላት",
+  "START DRAW":"እጣውን ጀምር","Ready for draw":"ለእጣ ዝግጁ",
+  "Locked winners":"የተከለከሉ አሸናፊዎች","Draw history":"የእጣ ታሪክ",
+  "No winner yet. The first draw can start when a member is Paid.":"እስካሁን አሸናፊ የለም። አባል ከተከፈለለት በኋላ እጣውን መጀመር ይቻላል።",
+  "Financial control":"የገንዘብ ቁጥጥር","Current cycle collected":"በአሁኑ ዙር የተሰበሰበ",
+  "All-time collected":"እስካሁን የተሰበሰበ","Expected":"መጠበቅ የሚገባው",
+  "Pending amount":"ማረጋገጫ የሚጠብቅ ገንዘብ","Member payment status":"የአባላት የክፍያ ሁኔታ",
+  "Winner exclusions":"የአሸናፊ መከልከያዎች",
+  "Payment confirmed":"ክፍያው ተረጋግጧል","Payment rejected":"ክፍያው ተቀባይነት አላገኘም",
+  "No exclusions.":"ምንም የተከለከለ አባል የለም።","No draws yet.":"እስካሁን እጣ አልወጣም።",
+  "Saved":"ተቀምጧል","Settings updated locally.":"ቅንብሩ በስልኩ/ኮምፒውተሩ ተቀምጧል።",
+  "Local settings only. Firebase remains disconnected.":"ይህ የአካባቢ ቅንብር ብቻ ነው። Firebase አልተገናኘም።"
+  "Members":"አባላት",
+  "Add member":"+ አባል ጨምር",
+  "Edit member":"አባል አስተካክል",
+  "Save member":"አባሉን አስቀምጥ",
+  "Search name, phone or member ID...":"ስም፣ ስልክ ወይም የአባል መለያ ፈልግ...",
+  "Member":"አባል",
+  "Phone":"ስልክ",
+  "This cycle":"የዚህ ዙር",
+  "Status":"ሁኔታ",
+  "Edit":"አስተካክል",
+  "Money flow":"የገንዘብ እንቅስቃሴ",
+  "All submitted payments for the current and previous cycles.":"በዚህና በቀደሙት ዙሮች የቀረቡ ሁሉም ክፍያዎች።",
+  "Simulate submission":"+ የሙከራ ክፍያ አስገባ",
+  "All":"ሁሉም",
+  "Pending":"በመጠባበቅ ላይ",
+  "Control":"ቁጥጥር",
+  "Review each submitted slip before marking the member as paid.":"አባሉን ከመክፈል በፊት የቀረበውን የባንክ ደረሰኝ አረጋግጥ።",
+  "Nothing waiting for verification.":"ለማረጋገጥ የሚጠብቅ ክፍያ የለም።",
+  "Updates":"ማሻሻያዎች",
+  "Mark all read":"ሁሉንም እንደተነበበ ምልክት አድርግ",
+  "No notifications.":"ማሳወቂያ የለም።",
+  "My Dashboard":"የእኔ ዳሽቦርድ",
+  "Weekly Payment":"የሳምንቱ ክፍያ",
+  "Payment History":"የክፍያ ታሪክ",
+  "My Profile":"የእኔ መረጃ",
+  "Welcome":"እንኳን ደህና መጡ",
+  "Your weekly Equb account at a glance.":"የሳምንቱን የእቁብ መረጃ በአንድ ቦታ ይመልከቱ።",
+  "Weekly contribution":"የሳምንት መዋጮ",
+  "Current status":"የአሁኑ ሁኔታ",
+  "Paid cycles":"የተከፈሉ ዙሮች",
+  "Unread updates":"ያልተነበቡ ማሳወቂያዎች",
+  "This week's payment":"የዚህ ሳምንት ክፍያ",
+  "Recent updates":"የቅርብ ጊዜ ማሻሻያዎች",
+  "Submit payment":"ክፍያ አስገባ",
+  "Submit payment for verification":"ለማረጋገጥ ክፍያውን አስገባ",
+  "Payment already confirmed for this cycle.":"የዚህ ዙር ክፍያ ቀድሞ ተረጋግጧል።",
+  "Payment for Cycle":"የዙር ክፍያ",
+  "Amount due":"መክፈል ያለበት መጠን",
+  "Deadline":"መጨረሻ ቀን",
+  "Amount (ETB)":"መጠን (ብር)",
+  "Transaction / reference number":"የግብይት / ማጣቀሻ ቁጥር",
+  "Payment date":"የክፍያ ቀን",
+  "Bank":"ባንክ",
+  "Bank payment slip (image)":"የባንክ የክፍያ ደረሰኝ (ፎቶ)",
+  "My records":"የእኔ መዝገቦች",
+  "Only your own payment records are shown.":"የእርስዎ የክፍያ መዝገብ ብቻ ይታያል።",
+  "Cycle":"ዙር",
+  "Reference":"ማጣቀሻ",
+  "No payment history yet.":"እስካሁን የክፍያ ታሪክ የለም።",
+  "Account":"መለያ",
+  "Your member information.":"የአባል መረጃዎ።",
+  "Member ID":"የአባል መለያ",
+  "Full name":"ሙሉ ስም",
+  "Inactive":"አይሰራም",
+  "Email":"ኢሜይል",
+  "Password":"የይለፍ ቃል",
+  "Sign in as Super Admin":"እንደ ዋና አስተዳዳሪ ግባ",
+  "Demo password":"የሙከራ ይለፍ ቃል",
+  "Sign in as Member":"እንደ አባል ግባ",
+  "Member Portal":"የአባል መግቢያ",
+  "Administrator":"አስተዳዳሪ",
+  "Weekly draw":"የሳምንቱ እጣ",
+  "ACTIVE":"እየተካሄደ",
+  "ENDED":"ተጠናቋል",
+  "Start New Equb":"አዲስ እቁብ ጀምር",
+  "Locked winners":"የተከለከሉ አሸናፊዎች",
+  "Draw history":"የእጣ ታሪክ",
+  "No-repeat protection is ON":"ድግግሞሽ መከላከያ እየሰራ ነው",
+  "Money collected — current cycle":"በዚህ ዙር የተሰበሰበ ገንዘብ",
+  "confirmed members":"የተረጋገጡ አባላት",
+  "Confirmed payments":"የተረጋገጡ ክፍያዎች",
+  "Maximum 100":"ከፍተኛው 100",
+  "Excluded until Equb ends":"እቁብ እስኪያልቅ ድረስ ከእጣ ውጭ",
+  "Current cycle collected":"በአሁኑ ዙር የተሰበሰበ",
+  "All-time collected":"እስካሁን የተሰበሰበ",
+  "Pending amount":"ማረጋገጫ የሚጠብቅ ገንዘብ",
+  "No winner yet.":"እስካሁን አሸናፊ የለም።",
+  "Payment confirmed":"ክፍያው ተረጋግጧል",
+  "Payment rejected":"ክፍያው አልተቀበለም",
+  "Your payment has been confirmed. Thank you.":"ክፍያዎ ተረጋግጧል። እናመሰግናለን።",
+  "Your slip is waiting for Super Admin verification.":"ደረሰኝዎ የዋና አስተዳዳሪን ማረጋገጫ እየጠበቀ ነው።",
+  "Please upload a new slip.":"እባክዎ አዲስ ደረሰኝ ይጫኑ።",
+  "Upload new slip":"አዲስ ደረሰኝ ጫን",
+  "Payment is waiting for verification.":"ክፍያው ማረጋገጫ እየጠበቀ ነው።",
+  "Your payment is waiting for verification.":"ክፍያዎ ማረጋገጫ እየጠበቀ ነው።",
+  "Pay this week":"የዚህ ሳምንት ክፍያ",
+  "View payment":"ክፍያውን እይ",
+  "Current cycle":"የአሁኑ ዙር",
+  "Cycle #":"ዙር #",
+  "New Payment Slip":"አዲስ የክፍያ ደረሰኝ",
+  "Draw completed":"እጣው ተጠናቋል",
+  "You won the Equb draw":"የእቁብ እጣ አሸንፈዋል",
+  "Congratulations! You won today’s draw. You are locked from future draws until this Equb ends.":"እንኳን ደስ አለዎት! የዛሬን እጣ አሸንፈዋል። ይህ እቁብ እስኪያልቅ ድረስ በሌላ እጣ መሳተፍ አይችሉም።",
+  "Draw complete":"እጣው ተጠናቋል",
+  "No eligible members":"ብቁ አባላት የሉም",
+  "Only Paid members who have never won in this Equb can be selected.":"በዚህ እቁብ አሸናፊ ያልሆኑ እና ክፍያቸው የተረጋገጠ አባላት ብቻ ይመረጣሉ።",
+  "Reset all local Equb data?":"ሁሉንም የአካባቢ እቁብ መረጃ ማጥፋት ይፈልጋሉ?",
+  "Maximum is 100 members.":"ከፍተኛው 100 አባላት ብቻ ናቸው።",
+  "Enter the member name.":"የአባሉን ስም ያስገቡ።",
+  "Missing name":"ስም ጎድሏል",
+  "Limit reached":"ገደቡ ደርሷል",
+  "Slip required":"ደረሰኝ ያስፈልጋል",
+  "Please select the bank slip image.":"እባክዎ የባንክ ደረሰኝ ፎቶ ይምረጡ።",
+  "File too large":"ፋይሉ በጣም ትልቅ ነው",
+  "Incomplete":"መረጃው አልተሟላም",
+  "Please complete amount, reference and date.":"እባክዎ መጠን፣ ማጣቀሻ እና ቀን ሙሉ ያስገቡ።",
+  "Already submitted":"ቀድሞ ተልኳል",
+  "This member already has a payment for this cycle.":"ይህ አባል ለዚህ ዙር ክፍያ አስገብቷል።",
+  "Submitted":"ተልኳል",
+  "Member is now Paid.":"አባሉ አሁን ተከፍሏል ተብሎ ተረጋግጧል።",
+  "Member was notified to upload again.":"አባሉ እንደገና እንዲጫን ተነግሮታል።",
+};
+function trText(s){return AM[s]||s}
+
+function translateVisibleUI(){
+ if((db.settings.lang||'en')!=='am')return;
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+ const nodes=[];
+ while(walker.nextNode()) nodes.push(walker.currentNode);
+ nodes.forEach(n=>{
+   const s=n.nodeValue.trim();
+   if(AM[s]) n.nodeValue=n.nodeValue.replace(s,AM[s]);
+ });
+}
+
+function applyLanguage(){
+  const lang=db.settings.lang||'en';
+  document.body.classList.toggle('amharic',lang==='am');
+  document.documentElement.lang=lang==='am'?'am':'en';
+  document.documentElement.dir='ltr';
+  const b=document.getElementById('langBtn');
+  if(b)b.textContent=lang==='am'?'English':'አማርኛ';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=lang==='am'?trText(el.dataset.i18n):el.dataset.i18n}); if(lang==='am') setTimeout(translateVisibleUI,0);
+}
+function toggleLanguage(){
+  db.settings.lang=(db.settings.lang||'en')==='en'?'am':'en';
+  save(); render(); applyLanguage();
+}
+
+function applyTheme(){
+  const t=db.settings.theme||'dark';
+  document.body.classList.toggle('light',t==='light');
+  const icon=document.getElementById('themeIcon'); if(icon) icon.textContent=t==='light'?'☀':'☾';
+}
+function toggleTheme(){
+  db.settings.theme=(db.settings.theme||'dark')==='dark'?'light':'dark';
+  save(); applyTheme();
+}
+function activeMembers(){return db.members.filter(m=>m.active)}
+function cyclePayments(){return db.payments.filter(p=>p.cycle===db.settings.cycle)}
+function confirmedTotal(){return cyclePayments().filter(p=>p.status==='paid').reduce((a,p)=>a+Number(p.amount||0),0)}
+function allConfirmedTotal(){return db.payments.filter(p=>p.status==='paid').reduce((a,p)=>a+Number(p.amount||0),0)}
+function expectedTotal(){return activeMembers().length*Number(db.settings.weeklyAmount||0)}
+function pendingTotal(){return cyclePayments().filter(p=>p.status==='pending').reduce((a,p)=>a+Number(p.amount||0),0)}
+function winnerLocked(id){return (db.draws||[]).some(d=>d.memberId===id && d.lockedUntilEqubEnd)}
+function eligibleDrawMembers(){
+  return activeMembers().filter(m=>paymentFor(m.id)?.status==='paid'&&!winnerLocked(m.id));
+}
+function drawLockedWinners(){
+  return (db.draws||[]).filter(d=>d.lockedUntilEqubEnd);
+}
+function checkEqubEnd(){
+  if(db.settings.equbEndDate && new Date(db.settings.equbEndDate+'T23:59:59')<new Date() && db.settings.equbStatus==='active'){
+    db.settings.equbStatus='ended'; save();
+  }
+}
+function startNewEqub(){
+  db.settings.equbStatus='active';
+  db.settings.equbEndDate='';
+  db.draws=(db.draws||[]).filter(d=>!d.lockedUntilEqubEnd);
+  save(); render(); toast('New Equb started','Previous winner locks have been cleared.');
+}
+
 function setLoginRole(r){loginRole=r;document.getElementById('adminTab').classList.toggle('active',r==='admin');document.getElementById('userTab').classList.toggle('active',r==='user');renderLoginForm()}
 function renderLoginForm(){const el=document.getElementById('loginForm');if(loginRole==='admin'){el.innerHTML=`<div class="formgrid"><div class="field"><label>Email</label><input id="lemail" value="admin@equb.local"></div><div class="field"><label>Password</label><input id="lpass" type="password" value="admin123"></div></div><button class="btn primary" style="width:100%;margin-top:14px" onclick="loginAdmin()">Sign in as Super Admin</button>`}else{el.innerHTML=`<div class="field"><label>Member</label><select id="lmember">${db.members.filter(m=>m.active).map(m=>`<option value="${m.id}">${esc(m.name)} — ${m.id}</option>`).join('')}</select></div><div class="field" style="margin-top:12px"><label>Demo password</label><input id="luserpass" type="password" value="123456"></div><button class="btn primary" style="width:100%;margin-top:14px" onclick="loginUser()">Sign in as Member</button>`}}
 function loginAdmin(){session={role:'admin',id:'ADMIN',name:'Super Admin'};startApp()}
 function loginUser(){const id=document.getElementById('lmember').value;const m=member(id);if(!m)return;session={role:'user',id,name:m.name};startApp()}
 function startApp(){document.getElementById('login').classList.add('hidden');document.getElementById('app').classList.remove('hidden');page=session.role==='admin'?'dashboard':'userDashboard';buildNav();render();toast('Welcome',session.name)}
 function logout(){session=null;document.getElementById('app').classList.add('hidden');document.getElementById('login').classList.remove('hidden');renderLoginForm()}
-function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open')}
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+}
 function buildNav(){const nav=document.getElementById('nav');const admin=[['dashboard','⌂','Dashboard'],['members','👥','Members'],['payments','💳','Payments'],['verification','✓','Verification'],['draw','🎰','Equb Draw'],['notifications','🔔','Notifications'],['reports','📊','Reports'],['settings','⚙','Settings']];const user=[['userDashboard','⌂','My Dashboard'],['myPayment','💳','Weekly Payment'],['history','📋','Payment History'],['notifications','🔔','Notifications'],['profile','👤','My Profile']];const arr=session.role==='admin'?admin:user;nav.innerHTML=arr.map(x=>`<button class="${page===x[0]?'active':''}" onclick="go('${x[0]}')"><span class="ico">${x[1]}</span>${x[2]}</button>`).join('');document.getElementById('brandSub').textContent=session.role==='admin'?'Super Admin':'Member Portal';document.getElementById('miniName').textContent=session.name;document.getElementById('miniRole').textContent=session.role==='admin'?'Administrator':'Member';document.getElementById('miniAvatar').textContent=session.role==='admin'?'SA':session.name.split(' ').map(x=>x[0]).slice(0,2).join('')}
-function go(p){page=p;document.getElementById('sidebar').classList.remove('open');buildNav();render()}
-function render(){const titles={dashboard:'Dashboard',members:'Members',payments:'Payments',verification:'Verification',draw:'Equb Draw',notifications:'Notifications',reports:'Reports',settings:'Settings',userDashboard:'My Dashboard',myPayment:'Weekly Payment',history:'Payment History',profile:'My Profile'};document.getElementById('pageTitle').textContent=titles[page]||'EqubFlow';const c=document.getElementById('content');const fn=window['page_'+page];c.innerHTML=fn?fn():'';updateDot()}
-function updateDot(){const n=db.notifications.filter(x=>x.target===(session.role==='admin'?'admin':session.id)&&!x.read).length;document.getElementById('notifDot').textContent=n?`<i style="position:absolute;background:var(--danger);width:8px;height:8px;border-radius:50%;margin:-25px 0 0 15px"></i>`:''}
-function page_dashboard(){const paid=db.payments.filter(p=>p.cycle===db.settings.cycle&&p.status==='paid').length,pending=db.payments.filter(p=>p.cycle===db.settings.cycle&&p.status==='pending').length,total=db.members.filter(m=>m.active).length;return `<div class="hero"><div><div class="eyebrow">${esc(db.settings.org)}</div><h2>Good day, Super Admin</h2><p>Control members, payments, verification and the weekly draw from one place.</p></div><button class="btn primary" onclick="go('verification')">Review payments →</button></div><div class="grid stats"><div class="card stat"><span class="label">Active Members</span><div class="num">${total}</div><span class="sub">Maximum supported: 100</span></div><div class="card stat"><span class="label">Paid This Cycle</span><div class="num">${paid}</div><span class="sub">${money(paid*db.settings.weeklyAmount)}</span></div><div class="card stat"><span class="label">Waiting Review</span><div class="num">${pending}</div><span class="sub">Needs verification</span></div><div class="card stat"><span class="label">Current Cycle</span><div class="num">#${db.settings.cycle}</div><span class="sub">Due ${esc(db.settings.due)}</span></div></div><div class="grid two" style="margin-top:16px"><div class="card"><div class="section-head"><h3>Recent payments</h3><button class="btn" onclick="go('payments')">View all</button></div>${paymentRows(6)}</div><div class="card"><div class="section-head"><h3>Recent notifications</h3><button class="btn" onclick="go('notifications')">Open</button></div>${noticeRows(4,'admin')}</div></div>`}
+function go(p){page=p;document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('open');buildNav();render()}
+function render(){checkEqubEnd();applyTheme();const titles={dashboard:'Dashboard',members:'Members',payments:'Payments',verification:'Verification',draw:'Equb Draw',notifications:'Notifications',reports:'Reports',settings:'Settings',userDashboard:'My Dashboard',myPayment:'Weekly Payment',history:'Payment History',profile:'My Profile'};document.getElementById('pageTitle').textContent=titles[page]||'EqubFlow';const c=document.getElementById('content');const fn=window['page_'+page];c.innerHTML=fn?fn():'';updateDot()}
+function updateDot(){const n=db.notifications.filter(x=>x.target===(session.role==='admin'?'admin':session.id)&&!x.read).length;document.getElementById('notifDot').innerHTML=n?`<i style="position:absolute;background:var(--danger);width:8px;height:8px;border-radius:50%;margin:-25px 0 0 15px"></i>`:''}
+applyLanguage();
+function page_dashboard(){
+ const active=activeMembers(), cp=cyclePayments(), paid=cp.filter(p=>p.status==='paid').length, pending=cp.filter(p=>p.status==='pending').length;
+ const collected=confirmedTotal(), expected=expectedTotal(), outstanding=Math.max(expected-collected,0), allCollected=allConfirmedTotal();
+ const progress=expected?Math.min(100,(collected/expected)*100):0, locked=drawLockedWinners();
+ return `<div class="hero"><div><div class="eyebrow">${esc(db.settings.org)} · Cycle #${db.settings.cycle}</div><h2>Good day, Super Admin</h2><p>Full financial, payment, member and draw overview in one dashboard.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="go('reports')">📊 Reports</button><button class="btn primary" onclick="go('verification')">Review payments →</button></div></div>
+ <div class="grid financial-grid">
+  <div class="card stat money-card"><span class="label">Money collected — current cycle</span><div class="num">${money(collected)}</div><span class="sub">${paid} confirmed members</span></div>
+  <div class="card stat money-card"><span class="label">Total collected — all cycles</span><div class="num">${money(allCollected)}</div><span class="sub">Confirmed money only</span></div>
+  <div class="card stat money-card"><span class="label">Expected this cycle</span><div class="num">${money(expected)}</div><span class="sub">${active.length} active × ${money(db.settings.weeklyAmount)}</span></div>
+  <div class="card stat money-card"><span class="label">Outstanding</span><div class="num">${money(outstanding)}</div><span class="sub">${Math.max(active.length-paid,0)} members not confirmed</span></div>
+ </div>
+ <div class="card" style="margin-top:16px"><div class="section-head"><div><h3>Collection progress</h3><small style="color:var(--muted)">Cycle #${db.settings.cycle} · ${db.settings.equbStatus==='active'?'Active':'Ended'}</small></div><b>${progress.toFixed(0)}%</b></div><div class="progress"><i style="width:${progress}%"></i></div></div>
+ <div class="grid financial-grid" style="margin-top:16px">
+  <div class="card stat"><span class="label">Paid</span><div class="num">${paid}</div><span class="sub">🟢 Confirmed</span></div>
+  <div class="card stat"><span class="label">Waiting review</span><div class="num">${pending}</div><span class="sub">🟡 ${money(pendingTotal())}</span></div>
+  <div class="card stat"><span class="label">Active members</span><div class="num">${active.length}</div><span class="sub">Maximum 100</span></div>
+  <div class="card stat"><span class="label">Winner locks</span><div class="num">${locked.length}</div><span class="sub">Excluded until Equb ends</span></div>
+ </div>
+ <div class="grid two" style="margin-top:16px"><div class="card"><div class="section-head"><h3>Recent payments</h3><button class="btn" onclick="go('payments')">View all</button></div>${paymentRows(6)}</div><div class="card"><div class="section-head"><h3>Recent notifications</h3><button class="btn" onclick="go('notifications')">Open</button></div>${noticeRows(4,'admin')}</div></div>
+ <div class="card" style="margin-top:16px"><div class="section-head"><h3>Draw winners locked in this Equb</h3><button class="btn" onclick="go('draw')">Manage draw</button></div>${locked.length?`<div class="winner-list">${locked.slice(0,8).map(d=>`<div class="winner-row"><span><b>🏆 ${esc(d.name)}</b><small style="display:block;color:var(--muted)">Cycle #${d.cycle} · ${esc(d.at)}</small></span><span class="locked-badge">LOCKED</span></div>`).join('')}</div>`:'<div class="empty">No winner is locked yet.</div>'}</div>`;
+}
 function paymentRows(limit=10, filter=''){let ps=db.payments.filter(p=>!filter||p.status===filter).slice(0,limit);if(!ps.length)return '<div class="empty">No payment records yet.</div>';return `<div class="table-wrap"><table class="table"><thead><tr><th>Member</th><th>Cycle</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>${ps.map(p=>`<tr><td>${esc(member(p.memberId)?.name||p.memberId)}<br><small style="color:var(--muted)">${p.memberId}</small></td><td>#${p.cycle}</td><td>${money(p.amount)}</td><td>${statusBadge(p.status)}</td><td><button class="btn" onclick="openPayment('${p.id}')">View</button></td></tr>`).join('')}</tbody></table></div>`}
 function page_members(){return `<div class="hero"><div><div class="eyebrow">People</div><h2>Members</h2><p>Manage the 100-member Equb roster.</p></div><button class="btn primary" onclick="memberModal()">+ Add member</button></div><div class="card"><div class="toolbar"><input class="field input search" id="memberSearch" placeholder="Search name, phone or member ID..." oninput="filterMembers()"></div><div id="memberTable">${memberTable()}</div></div>`}
 function memberTable(){const q=(document.getElementById('memberSearch')?.value||'').toLowerCase();let ms=db.members.filter(m=>[m.name,m.phone,m.id].join(' ').toLowerCase().includes(q));return `<div class="table-wrap"><table class="table"><thead><tr><th>Member</th><th>Phone</th><th>This cycle</th><th>Status</th><th></th></tr></thead><tbody>${ms.map(m=>{const p=paymentFor(m.id);return `<tr><td><b>${esc(m.name)}</b><br><small style="color:var(--muted)">${m.id}</small></td><td>${esc(m.phone)}</td><td>${p?money(p.amount):money(db.settings.weeklyAmount)}</td><td>${statusBadge(p?.status||'none')}</td><td><button class="btn" onclick="memberModal('${m.id}')">Edit</button></td></tr>`}).join('')}</tbody></table></div>`}
 function filterMembers(){document.getElementById('memberTable').innerHTML=memberTable()}
 function page_payments(){return `<div class="hero"><div><div class="eyebrow">Money flow</div><h2>Payments</h2><p>All submitted payments for the current and previous cycles.</p></div><button class="btn primary" onclick="simulatePaymentModal()">+ Simulate submission</button></div><div class="card"><div class="toolbar"><button class="btn" onclick="render()">All</button><button class="btn warn" onclick="this.parentElement.parentElement.querySelector('#payRows').innerHTML=paymentRows(100,'pending')">Pending</button><button class="btn success" onclick="this.parentElement.parentElement.querySelector('#payRows').innerHTML=paymentRows(100,'paid')">Paid</button></div><div id="payRows">${paymentRows(100)}</div></div>`}
 function page_verification(){const pending=db.payments.filter(p=>p.status==='pending');return `<div class="hero"><div><div class="eyebrow">Control</div><h2>Verification</h2><p>Review each submitted slip before marking the member as paid.</p></div></div><div class="card">${pending.length?paymentRows(100,'pending'):'<div class="empty">🎉 Nothing waiting for verification.</div>'}</div>`}
-function page_draw(){const eligible=db.members.filter(m=>m.active&&paymentFor(m.id)?.status==='paid');return `<div class="hero"><div><div class="eyebrow">Weekly draw</div><h2>Equb Draw</h2><p>Only members marked Paid in cycle #${db.settings.cycle} are eligible in this local prototype.</p></div></div><div class="grid two"><div class="card drawbox"><div class="eyebrow">Eligible members: ${eligible.length}</div><div id="drawNum" class="drawnum">--</div><div id="drawWinner" class="winner">Ready for draw</div><button class="btn primary" style="margin-top:22px;padding:13px 28px" onclick="runDraw()">🎰 START DRAW</button></div><div class="card"><div class="section-head"><h3>Draw history</h3></div>${db.draws.length?db.draws.slice(0,10).map(d=>`<div class="notice"><b>🏆 #${d.memberId} — ${esc(d.name)}</b><small>Cycle #${d.cycle} · ${esc(d.at)}</small></div>`).join(''):'<div class="empty">No draws yet.</div>'}</div></div>`}
+function page_draw(){
+ checkEqubEnd();
+ const eligible=eligibleDrawMembers(), locked=drawLockedWinners();
+ return `<div class="hero"><div><div class="eyebrow">Weekly draw · ${db.settings.equbStatus==='active'?'ACTIVE':'ENDED'}</div><h2>Equb Draw</h2><p>A winner can <b>never be selected again</b> during the same Equb. Once selected, the member is locked until the Equb ends.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap">${db.settings.equbStatus==='ended'?'<button class="btn success" onclick="startNewEqub()">↻ Start New Equb</button>':''}<span class="badge ${db.settings.equbStatus==='active'?'paid':'rejected'}">${db.settings.equbStatus==='active'?'● Active':'● Ended'}</span></div></div>
+ <div class="grid two"><div class="card drawbox"><div class="eyebrow">Eligible Paid members: ${eligible.length}</div><div id="drawNum" class="drawnum">--</div><div id="drawWinner" class="winner">Ready for draw</div><button class="btn primary" style="margin-top:22px;padding:13px 28px" onclick="runDraw()" ${eligible.length?'':'disabled'}>🎰 START DRAW</button><div style="color:var(--muted);font-size:11px;margin-top:14px">Locked winners: ${locked.length} · No-repeat protection is ON</div></div>
+ <div class="card"><div class="section-head"><h3>Locked winners</h3><span class="badge neutral">${locked.length}</span></div>${locked.length?`<div class="winner-list">${locked.map(d=>`<div class="winner-row"><span><b>🏆 ${esc(d.name)}</b><small style="display:block;color:var(--muted)">${d.memberId} · ${esc(d.at)}</small></span><span class="locked-badge">NO REPEAT</span></div>`).join('')}</div>`:'<div class="empty">No winner yet. The first draw can start when a member is Paid.</div>'}</div></div>
+ <div class="card" style="margin-top:16px"><div class="section-head"><h3>Draw history</h3></div>${db.draws.length?db.draws.slice(0,20).map(d=>`<div class="notice"><b>🏆 #${d.memberId} — ${esc(d.name)}</b><small>Cycle #${d.cycle} · ${esc(d.at)} · ${d.lockedUntilEqubEnd?'Locked until Equb end':''}</small></div>`).join(''):'<div class="empty">No draws yet.</div>'}</div>`;
+}
 function page_notifications(){return `<div class="hero"><div><div class="eyebrow">Updates</div><h2>Notifications</h2><p>Local in-app notifications for ${session.role==='admin'?'the admin':'your account'}.</p></div><button class="btn" onclick="markAllRead()">Mark all read</button></div><div class="card">${noticeRows(100,session.role==='admin'?'admin':session.id,true)}</div>`}
 function noticeRows(limit,target,full=false){let ns=db.notifications.filter(n=>n.target===target).slice(0,limit);if(!ns.length)return '<div class="empty">No notifications.</div>';return `<div class="notice-list">${ns.map(n=>`<div class="notice ${n.read?'':'unread'}" onclick="readNotif('${n.id}')"><b>${esc(n.title)}</b><div>${esc(n.message)}</div><small>${new Date(n.createdAt).toLocaleString()}</small></div>`).join('')}</div>`}
-function page_reports(){const total=db.payments.filter(p=>p.cycle===db.settings.cycle&&p.status==='paid').reduce((a,p)=>a+p.amount,0);return `<div class="hero"><div><div class="eyebrow">Insights</div><h2>Reports</h2><p>Simple local reporting before the Firebase version.</p></div></div><div class="grid three"><div class="card stat"><span class="label">Collected</span><div class="num">${money(total)}</div><span class="sub">Cycle #${db.settings.cycle}</span></div><div class="card stat"><span class="label">Paid members</span><div class="num">${db.payments.filter(p=>p.cycle===db.settings.cycle&&p.status==='paid').length}</div><span class="sub">Verified</span></div><div class="card stat"><span class="label">Pending</span><div class="num">${db.payments.filter(p=>p.cycle===db.settings.cycle&&p.status==='pending').length}</div><span class="sub">Need review</span></div></div><div class="card" style="margin-top:16px"><div class="section-head"><h3>Member payment status</h3></div>${memberTable()}</div>`}
-function page_settings(){return `<div class="hero"><div><div class="eyebrow">Configuration</div><h2>Settings</h2><p>Local settings only. Firebase is intentionally not connected.</p></div></div><div class="card"><div class="formgrid"><div class="field"><label>Organization name</label><input id="sorg" value="${esc(db.settings.org)}"></div><div class="field"><label>Weekly amount (ETB)</label><input id="samt" type="number" value="${db.settings.weeklyAmount}"></div><div class="field"><label>Current cycle</label><input id="scycle" type="number" value="${db.settings.cycle}"></div><div class="field"><label>Payment deadline</label><input id="sdue" value="${esc(db.settings.due)}"></div></div><div style="display:flex;gap:8px;margin-top:15px"><button class="btn primary" onclick="saveSettings()">Save settings</button><button class="btn danger" onclick="resetDemo()">Reset local demo</button></div></div>`}
+function page_reports(){
+ const total=confirmedTotal(), all=allConfirmedTotal(), expected=expectedTotal(), pending=pendingTotal(), paid=cyclePayments().filter(p=>p.status==='paid').length;
+ return `<div class="hero"><div><div class="eyebrow">Financial control</div><h2>Reports</h2><p>Confirmed money is counted as collected. Pending submissions are shown separately.</p></div><button class="btn" onclick="window.print()">🖨 Print</button></div>
+ <div class="grid financial-grid"><div class="card stat money-card"><span class="label">Current cycle collected</span><div class="num">${money(total)}</div><span class="sub">Confirmed</span></div><div class="card stat money-card"><span class="label">All-time collected</span><div class="num">${money(all)}</div><span class="sub">All confirmed payments</span></div><div class="card stat money-card"><span class="label">Expected</span><div class="num">${money(expected)}</div><span class="sub">Current cycle</span></div><div class="card stat money-card"><span class="label">Pending amount</span><div class="num">${money(pending)}</div><span class="sub">Not yet confirmed</span></div></div>
+ <div class="card" style="margin-top:16px"><div class="section-head"><h3>Member payment status</h3><span class="badge neutral">Cycle #${db.settings.cycle}</span></div>${memberTable()}</div>
+ <div class="card" style="margin-top:16px"><div class="section-head"><h3>Winner exclusions</h3></div>${drawLockedWinners().length?drawLockedWinners().map(d=>`<div class="notice"><b>🔒 ${esc(d.name)} (${d.memberId})</b><div>Won cycle #${d.cycle}; excluded from all future draws until the current Equb ends.</div></div>`).join(''):'<div class="empty">No exclusions.</div>'}</div>`;
+}
+function page_settings(){
+ return `<div class="hero"><div><div class="eyebrow">Configuration</div><h2>Settings</h2><p>Local settings only. Firebase remains disconnected.</p></div></div>
+ <div class="card"><div class="section-head"><h3>Equb & financial settings</h3></div><div class="formgrid">
+ <div class="field"><label>Organization name</label><input id="sorg" value="${esc(db.settings.org)}"></div>
+ <div class="field"><label>Weekly amount (ETB)</label><input id="samt" type="number" value="${db.settings.weeklyAmount}"></div>
+ <div class="field"><label>Current cycle</label><input id="scycle" type="number" value="${db.settings.cycle}"></div>
+ <div class="field"><label>Payment deadline</label><input id="sdue" value="${esc(db.settings.due)}"></div>
+ <div class="field"><label>Equb end date</label><input id="send" type="date" value="${esc(db.settings.equbEndDate||'')}"></div>
+ <div class="field"><label>ቋንቋ / Language</label><select id="slang"><option value="en" ${db.settings.lang!=='am'?'selected':''}>English</option><option value="am" ${db.settings.lang==='am'?'selected':''}>አማርኛ</option></select></div><div class="field"><label>Equb status</label><select id="sstatus"><option value="active" ${db.settings.equbStatus==='active'?'selected':''}>Active</option><option value="ended" ${db.settings.equbStatus==='ended'?'selected':''}>Ended</option></select></div>
+ </div><div style="display:flex;gap:8px;margin-top:15px;flex-wrap:wrap"><button class="btn primary" onclick="saveSettings()">Save settings</button><button class="btn" onclick="toggleTheme()">Toggle dark/light mode</button><button class="btn success" onclick="startNewEqub()">↻ Start New Equb / Clear winner locks</button><button class="btn danger" onclick="resetDemo()">Reset local demo</button></div></div>
+ <div class="card" style="margin-top:16px"><div class="section-head"><h3>Rules currently active</h3></div><div class="notice-list"><div class="notice"><b>💰 Confirmed money only</b><div>Dashboard balance counts only payments confirmed by Super Admin.</div></div><div class="notice"><b>🎰 No-repeat draw</b><div>A draw winner is locked and cannot enter another draw until the Equb ends.</div></div><div class="notice"><b>🔔 Notifications</b><div>Admin receives new-slip notifications; members receive confirm/reject/draw notifications.</div></div></div></div>`;
+}
 function userData(){return member(session.id)}
 function page_userDashboard(){const m=userData(),p=paymentFor(m.id);return `<div class="hero"><div><div class="eyebrow">${esc(db.settings.org)} · Member ${m.id}</div><h2>Welcome, ${esc(m.name.split(' ')[0])} 👋</h2><p>Your weekly Equb account at a glance.</p></div><button class="btn primary" onclick="go('myPayment')">${p?.status==='paid'?'View payment':'Pay this week'} →</button></div><div class="grid stats"><div class="card stat"><span class="label">Weekly contribution</span><div class="num">${money(db.settings.weeklyAmount)}</div><span class="sub">Cycle #${db.settings.cycle}</span></div><div class="card stat"><span class="label">Current status</span><div class="num" style="font-size:21px;margin-top:16px">${statusBadge(p?.status||'none')}</div><span class="sub">${p?'Submitted '+new Date(p.submittedAt).toLocaleDateString():'No payment submitted'}</span></div><div class="card stat"><span class="label">Paid cycles</span><div class="num">${db.payments.filter(x=>x.memberId===m.id&&x.status==='paid').length}</div><span class="sub">Confirmed payments</span></div><div class="card stat"><span class="label">Notifications</span><div class="num">${db.notifications.filter(n=>n.target===m.id&&!n.read).length}</div><span class="sub">Unread updates</span></div></div><div class="grid two" style="margin-top:16px"><div class="card"><div class="section-head"><h3>This week's payment</h3></div>${userPaymentCard(p)}</div><div class="card"><div class="section-head"><h3>Recent updates</h3></div>${noticeRows(4,m.id)}</div></div>`}
 function userPaymentCard(p){if(!p)return `<div class="empty">Your Week #${db.settings.cycle} contribution is ${money(db.settings.weeklyAmount)}.<br><button class="btn primary" style="margin-top:12px" onclick="go('myPayment')">Submit payment</button></div>`;return `<div style="display:flex;justify-content:space-between;align-items:center;gap:15px"><div><b>Cycle #${p.cycle}</b><div style="color:var(--muted);margin-top:4px">${money(p.amount)} · ${p.bank||'Bank'}</div></div>${statusBadge(p.status)}</div><div style="margin-top:15px">${p.status==='rejected'?`<div class="notice"><b>Payment rejected</b><div>${esc(p.reason||'Please upload a new slip.')}</div></div><button class="btn primary" style="margin-top:12px" onclick="go('myPayment')">Upload new slip</button>`:p.status==='pending'?'<div class="notice">Your slip is waiting for Super Admin verification.</div>':'<div class="notice">Your payment has been confirmed. Thank you.</div>'}</div>`}
@@ -96,11 +393,34 @@ function previewSlip(e){const f=e.target.files[0];if(!f)return;const r=new FileR
 function openPayment(id){const p=db.payments.find(x=>x.id===id);if(!p)return;const m=member(p.memberId);openModal(`<div class="modal-head"><h3>Payment Review</h3><button class="iconbtn" onclick="closeModal()">×</button></div><div class="grid two"><div><div class="notice"><b>${esc(m?.name||p.memberId)}</b><div>${p.memberId} · Cycle #${p.cycle}</div><div>${money(p.amount)} · ${esc(p.bank||'-')}</div><div>Ref: ${esc(p.ref||'-')}</div><div>Status: ${statusBadge(p.status)}</div></div>${p.status==='pending'?`<div style="display:flex;gap:8px;margin-top:12px"><button class="btn success" onclick="verifyPayment('${p.id}')">✓ Confirm</button><button class="btn danger" onclick="rejectPayment('${p.id}')">✕ Reject</button></div>`:''}</div><div>${p.slipData?`<img class="slip-preview" src="${p.slipData}" alt="Bank slip">`:'<div class="empty">No real slip image in this record.</div>'}</div></div>`)}
 function verifyPayment(id){const p=db.payments.find(x=>x.id===id);if(!p)return;p.status='paid';p.verifiedAt=Date.now();p.verifiedBy='ADMIN';addNotif(p.memberId,'Payment Confirmed','Your payment for Cycle #'+p.cycle+' has been confirmed.','success');save();closeModal();render();toast('Confirmed','Member is now Paid.')}
 function rejectPayment(id){const reason=prompt('Reason for rejection:','Slip could not be verified.');if(reason===null)return;const p=db.payments.find(x=>x.id===id);if(!p)return;p.status='rejected';p.reason=reason||'Please upload a new slip.';addNotif(p.memberId,'Payment Rejected',p.reason,'danger');save();closeModal();render();toast('Rejected','Member was notified to upload again.')}
-function runDraw(){const eligible=db.members.filter(m=>m.active&&paymentFor(m.id)?.status==='paid');if(!eligible.length)return toast('No eligible members','At least one Paid member is required.');const num=document.getElementById('drawNum'),win=document.getElementById('drawWinner');let i=0;const timer=setInterval(()=>{num.textContent=String(Math.floor(Math.random()*100)+1).padStart(2,'0');if(++i>22){clearInterval(timer);const arr=new Uint32Array(1);crypto.getRandomValues(arr);const m=eligible[arr[0]%eligible.length];num.textContent=m.id.replace('M','');win.textContent='🏆 '+m.name+' — '+m.id;db.draws.unshift({memberId:m.id,name:m.name,cycle:db.settings.cycle,at:now()});addNotif('admin','Draw completed','Winner: '+m.name+' ('+m.id+') for Cycle #'+db.settings.cycle,'success');save();toast('Draw complete','Winner selected from eligible Paid members.')}},75)}
+function runDraw(){
+ checkEqubEnd();
+ if(db.settings.equbStatus!=='active')return toast('Equb ended','Start a new Equb before running another draw.');
+ const eligible=eligibleDrawMembers();
+ if(!eligible.length)return toast('No eligible members','Only Paid members who have never won in this Equb can be selected.');
+ const num=document.getElementById('drawNum'),win=document.getElementById('drawWinner');
+ let i=0;
+ const timer=setInterval(()=>{
+   num.textContent=String(Math.floor(Math.random()*100)+1).padStart(2,'0');
+   if(++i>24){
+     clearInterval(timer);
+     const arr=new Uint32Array(1); crypto.getRandomValues(arr);
+     const m=eligible[arr[0]%eligible.length];
+     num.textContent=m.id.replace('M','');
+     win.textContent='🏆 '+m.name+' — '+m.id;
+     db.draws.unshift({memberId:m.id,name:m.name,cycle:db.settings.cycle,at:now(),lockedUntilEqubEnd:true});
+     addNotif('admin','Draw completed','Winner: '+m.name+' ('+m.id+') for Cycle #'+db.settings.cycle+'. Winner is locked until the Equb ends.','success');
+     addNotif(m.id,'You won the Equb draw','Congratulations! You won today’s draw. You are locked from future draws until this Equb ends.','success');
+     save();
+     toast('Draw complete',m.name+' is now locked and cannot be selected again in this Equb.');
+     setTimeout(render,500);
+   }
+ },75);
+}
 function readNotif(id){const n=db.notifications.find(x=>x.id===id);if(n)n.read=true;save();render()}
 function markAllRead(){db.notifications.filter(n=>n.target===(session.role==='admin'?'admin':session.id)).forEach(n=>n.read=true);save();render()}
 function showNotifications(){go('notifications')}
-function saveSettings(){db.settings.org=document.getElementById('sorg').value.trim()||'Unity Equb';db.settings.weeklyAmount=Number(document.getElementById('samt').value)||1000;db.settings.cycle=Number(document.getElementById('scycle').value)||1;db.settings.due=document.getElementById('sdue').value.trim()||'Friday';save();render();toast('Saved','Settings updated locally.')}
+function saveSettings(){db.settings.org=document.getElementById('sorg').value.trim()||'Unity Equb';db.settings.weeklyAmount=Number(document.getElementById('samt').value)||1000;db.settings.cycle=Number(document.getElementById('scycle').value)||1;db.settings.due=document.getElementById('sdue').value.trim()||'Friday';db.settings.equbEndDate=document.getElementById('send').value||'';db.settings.equbStatus=document.getElementById('sstatus').value;db.settings.lang=document.getElementById('slang').value;save();checkEqubEnd();applyTheme();render();toast('Saved','Settings updated locally.')}
 function resetDemo(){if(!confirm('Reset all local Equb data?'))return;db=initial();save();session=null;location.reload()}
 function openModal(html){document.getElementById('modalBox').innerHTML=html;document.getElementById('modal').classList.remove('hidden')}
 function closeModal(){document.getElementById('modal').classList.add('hidden')}
