@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0f16">
+<title>Equb Manager — Local Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">E</div><div><b>EQUB</b><span>MANAGER</span></div></div>
+    <nav>
+      <button class="nav active" data-view="dashboard">⌂ <span>Dashboard</span></button>
+      <button class="nav" data-view="members">👥 <span>Members</span></button>
+      <button class="nav" data-view="payments">💳 <span>Payments</span></button>
+      <button class="nav" data-view="verification">✓ <span>Verification</span><em id="pendingBadge">0</em></button>
+      <button class="nav" data-view="draw">🎰 <span>Equb Draw</span></button>
+      <button class="nav" data-view="notifications">🔔 <span>Notifications</span><em id="notifBadge">0</em></button>
+      <button class="nav" data-view="settings">⚙ <span>Settings</span></button>
+    </nav>
+    <div class="sidebar-bottom"><span class="dot"></span> Local Demo Mode</div>
+  </aside>
+
+  <main>
+    <header>
+      <button class="mobile-menu" id="mobileMenu">☰</button>
+      <div><div class="eyebrow">EQUB MANAGEMENT SYSTEM</div><h1 id="pageTitle">Dashboard</h1></div>
+      <div class="header-actions">
+        <button class="icon-btn" id="bellBtn" title="Notifications">🔔<i id="bellDot"></i></button>
+        <div class="admin-chip"><div class="avatar">SA</div><div><b>Super Admin</b><small>Administrator</small></div></div>
+      </div>
+    </header>
+
+    <section id="view-dashboard" class="view active">
+      <div class="hero"><div><span class="pill">LOCAL DEMO</span><h2>Good day, Super Admin.</h2><p>Manage members, verify weekly payments and run a transparent Equb draw.</p></div><button class="primary" onclick="showView('verification')">Review Payments →</button></div>
+      <div class="stats">
+        <div class="stat"><span>Members</span><b id="statMembers">0</b><small>Registered</small></div>
+        <div class="stat"><span>Paid This Cycle</span><b id="statPaid">0</b><small id="statPaidSub">of 0</small></div>
+        <div class="stat"><span>Pending Review</span><b id="statPending">0</b><small>Slip submissions</small></div>
+        <div class="stat"><span>Notifications</span><b id="statNotif">0</b><small>Unread</small></div>
+      </div>
+      <div class="grid-2">
+        <div class="card"><div class="card-head"><div><h3>Payment Overview</h3><p>Current cycle</p></div><span class="cycle-tag" id="cycleTag">Cycle #001</span></div><div class="progress"><i id="paymentProgress"></i></div><div class="progress-label"><span id="progressText">0%</span><span id="progressAmount">0 ETB</span></div></div>
+        <div class="card"><div class="card-head"><div><h3>Recent Activity</h3><p>Latest system events</p></div><button class="text-btn" onclick="showView('notifications')">View all</button></div><div id="recentActivity" class="activity-list"></div></div>
+      </div>
+    </section>
+
+    <section id="view-members" class="view">
+      <div class="section-top"><div><h2>Members</h2><p>Manage the 1–100 member list used by the Equb system.</p></div><button class="primary" onclick="openMemberModal()">+ Add Member</button></div>
+      <div class="card"><div class="toolbar"><input id="memberSearch" placeholder="Search member name or number…"><span id="memberCount"></span></div><div class="table-wrap"><table><thead><tr><th>#</th><th>Member</th><th>Phone</th><th>Status</th><th>Cycle payment</th><th>Actions</th></tr></thead><tbody id="membersTable"></tbody></table></div></div>
+    </section>
+
+    <section id="view-payments" class="view">
+      <div class="section-top"><div><h2>Payments</h2><p>Current cycle payment status.</p></div><button class="secondary" onclick="simulateSubmission()">＋ Simulate User Submission</button></div>
+      <div class="card"><div class="toolbar"><select id="paymentFilter"><option value="all">All statuses</option><option value="pending">Pending review</option><option value="paid">Paid</option><option value="rejected">Rejected</option></select></div><div class="table-wrap"><table><thead><tr><th>Member</th><th>Amount</th><th>Slip</th><th>Status</th><th>Submitted</th><th>Action</th></tr></thead><tbody id="paymentsTable"></tbody></table></div></div>
+    </section>
+
+    <section id="view-verification" class="view">
+      <div class="section-top"><div><h2>Verification</h2><p>Review uploaded slips before a payment becomes Paid.</p></div><span class="security-note">🔒 Only Super Admin can confirm</span></div>
+      <div id="verificationList" class="verify-grid"></div>
+    </section>
+
+    <section id="view-draw" class="view">
+      <div class="section-top"><div><h2>Equb Draw</h2><p>Local demo: fair random selection from eligible paid members.</p></div><button class="secondary" onclick="resetDraw()">Reset</button></div>
+      <div class="draw-card card">
+        <div class="draw-machine">
+          <div class="draw-number" id="drawNumber">--</div>
+          <div class="draw-label" id="drawLabel">READY</div>
+        </div>
+        <div class="draw-controls"><button class="draw-btn" id="drawBtn" onclick="runDraw()">🎰 START DRAW</button><p>Animation is visual; the final winner is selected with browser cryptographic randomness from the eligible member pool.</p></div>
+      </div>
+      <div class="card"><div class="card-head"><div><h3>Draw History</h3><p>Saved locally on this browser.</p></div></div><div id="drawHistory" class="history-list"></div></div>
+    </section>
+
+    <section id="view-notifications" class="view">
+      <div class="section-top"><div><h2>Notifications</h2><p>Local notification center for members, collectors and Super Admin.</p></div><button class="secondary" onclick="markAllRead()">Mark all read</button></div>
+      <div class="card"><div id="notificationsList" class="notification-list"></div></div>
+    </section>
+
+    <section id="view-settings" class="view">
+      <div class="section-top"><div><h2>Settings</h2><p>Demo settings. Firebase is intentionally not connected yet.</p></div></div>
+      <div class="settings-grid">
+        <div class="card setting"><h3>Cycle</h3><label>Cycle number<input id="cycleInput" type="number" min="1"></label><label>Weekly amount (ETB)<input id="amountInput" type="number" min="0"></label><button class="primary" onclick="saveSettings()">Save settings</button></div>
+        <div class="card setting"><h3>Local data</h3><p>All demo data is stored in this browser's localStorage. Clearing site data will remove it.</p><button class="danger" onclick="clearDemo()">Reset all demo data</button></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="memberModal"><div class="modal-box"><button class="close" onclick="closeMemberModal()">×</button><h3>Add Member</h3><label>Member number<input id="mNumber" type="number" min="1" max="100"></label><label>Name<input id="mName" placeholder="Full name"></label><label>Phone<input id="mPhone" placeholder="09xxxxxxxx"></label><div class="modal-actions"><button class="secondary" onclick="closeMemberModal()">Cancel</button><button class="primary" onclick="addMember()">Add member</button></div></div></div>
+<div class="modal" id="slipModal"><div class="modal-box slip-box"><button class="close" onclick="closeSlip()">×</button><div id="slipContent"></div></div></div>
+<script src="app.js"></script>
+
+<script>
+const KEY="equb_local_demo_v1";
+const defaultState=()=>({settings:{cycle:1,amount:1000},members:seedMembers(),payments:[],notifications:[],draws:[]});
+function seedMembers(){return Array.from({length:20},(_,i)=>({id:i+1,name:["Abebe Kebede","Hana Ali","Dawit Tesfaye","Mimi Bekele","Yonas Girma"][i%5]+" "+(i+1),phone:"09"+String(10000000+i).slice(0,8),active:true}));}
+let state=load();
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||defaultState()}catch(e){return defaultState()}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));renderAll()}
+function uid(){return crypto?.randomUUID?.()||Date.now()+"-"+Math.random()}
+function now(){return new Date().toLocaleString()}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2400)}
+function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));document.getElementById("view-"+name).classList.add("active");document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.view===name));document.getElementById("pageTitle").textContent=name==="draw"?"Equb Draw":name[0].toUpperCase()+name.slice(1);document.getElementById("sidebar").classList.remove("open");renderAll()}
+document.querySelectorAll(".nav").forEach(n=>n.onclick=()=>showView(n.dataset.view));
+document.getElementById("mobileMenu").onclick=()=>document.getElementById("sidebar").classList.toggle("open");
+document.getElementById("bellBtn").onclick=()=>showView("notifications");
+function unread(){return state.notifications.filter(n=>!n.read).length}
+function addNotification(target,title,message,type="info"){state.notifications.unshift({id:uid(),target,title,message,type,read:false,createdAt:Date.now()})}
+function statusFor(id){let p=state.payments.find(x=>x.memberId===id&&x.cycle===state.settings.cycle);return p?.status||"pending"}
+function renderDashboard(){
+ const total=state.members.length, paid=state.payments.filter(p=>p.cycle===state.settings.cycle&&p.status==="paid").length;
+ const pending=state.payments.filter(p=>p.cycle===state.settings.cycle&&p.status==="pending").length;
+ document.getElementById("statMembers").textContent=total;document.getElementById("statPaid").textContent=paid;document.getElementById("statPaidSub").textContent=`of ${total}`;document.getElementById("statPending").textContent=pending;document.getElementById("statNotif").textContent=unread();
+ const pct=total?Math.round(paid/total*100):0;document.getElementById("paymentProgress").style.width=pct+"%";document.getElementById("progressText").textContent=pct+"%";document.getElementById("progressAmount").textContent=(paid*state.settings.amount).toLocaleString()+" ETB";document.getElementById("cycleTag").textContent=`Cycle #${String(state.settings.cycle).padStart(3,"0")}`;
+ const list=state.notifications.slice(0,5);document.getElementById("recentActivity").innerHTML=list.length?list.map(n=>`<div class="activity"><b>${esc(n.title)}</b><small>${esc(n.message)} · ${new Date(n.createdAt).toLocaleString()}</small></div>`).join(""):'<div class="empty">No activity yet.</div>';
+}
+function renderMembers(){
+ const q=(document.getElementById("memberSearch")?.value||"").toLowerCase();let arr=state.members.filter(m=>(m.name+m.id+m.phone).toLowerCase().includes(q));
+ document.getElementById("memberCount").textContent=`${arr.length} members`;
+ document.getElementById("membersTable").innerHTML=arr.map(m=>{let s=statusFor(m.id);return `<tr><td>#${m.id}</td><td><b>${esc(m.name)}</b></td><td>${esc(m.phone)}</td><td><span class="status paid">Active</span></td><td><span class="status ${s}">${s==="paid"?"PAID":s==="rejected"?"REJECTED":"PENDING"}</span></td><td><button class="slip-btn" onclick="submitFor(${m.id})">Submit slip</button></td></tr>`}).join("")||'<tr><td colspan="6" class="empty">No members found.</td></tr>';
+}
+function renderPayments(){
+ const f=document.getElementById("paymentFilter")?.value||"all";let arr=state.payments.filter(p=>p.cycle===state.settings.cycle&&(f==="all"||p.status===f));
+ document.getElementById("paymentsTable").innerHTML=arr.map(p=>{let m=state.members.find(x=>x.id===p.memberId);return `<tr><td>#${p.memberId} — ${esc(m?.name||"Unknown")}</td><td>${p.amount.toLocaleString()} ETB</td><td><button class="slip-btn" onclick="openSlip('${p.id}')">📄 View slip</button></td><td><span class="status ${p.status}">${p.status==="paid"?"PAID":p.status==="rejected"?"REJECTED":"PENDING"}</span></td><td>${esc(p.submittedAt)}</td><td>${p.status==="pending"?`<button class="primary" onclick="confirmPayment('${p.id}')">Confirm</button>`:"—"}</td></tr>`}).join("")||'<tr><td colspan="6" class="empty">No payments in this cycle.</td></tr>';
+}
+function renderVerification(){
+ const arr=state.payments.filter(p=>p.cycle===state.settings.cycle&&p.status==="pending");
+ document.getElementById("verificationList").innerHTML=arr.map(p=>{let m=state.members.find(x=>x.id===p.memberId);return `<div class="verify"><div class="verify-head"><b>#${p.memberId} ${esc(m?.name||"")}</b><span class="status pending">PENDING</span></div><p>Amount: <b>${p.amount.toLocaleString()} ETB</b><br>Submitted: ${esc(p.submittedAt)}<br>Slip: ${esc(p.slipName)}</p><div class="verify-actions"><button class="secondary" onclick="openSlip('${p.id}')">View slip</button><button class="primary" onclick="confirmPayment('${p.id}')">Confirm</button><button class="danger" onclick="rejectPayment('${p.id}')">Reject</button></div></div>`}).join("")||'<div class="card empty" style="grid-column:1/-1">🎉 No pending slips. Everything is reviewed.</div>';
+}
+function renderNotifications(){
+ const list=state.notifications;document.getElementById("notificationsList").innerHTML=list.length?list.map(n=>`<div class="notice ${n.read?"":"unread"}"><div class="notice-icon">${n.type==="success"?"🟢":n.type==="error"?"🔴":"🔔"}</div><div><b>${esc(n.title)}</b><div>${esc(n.message)}</div><small>${new Date(n.createdAt).toLocaleString()} · ${n.target}</small></div></div>`).join(""):'<div class="empty">No notifications.</div>';
+}
+function renderDraws(){document.getElementById("drawHistory").innerHTML=state.draws.length?state.draws.map(d=>`<div class="history-item"><b>🏆 Winner #${d.winnerId} — ${esc(d.name)}</b><small>${new Date(d.time).toLocaleString()} · Cycle #${String(d.cycle).padStart(3,"0")}</small></div>`).join(""):'<div class="empty">No draw has been completed yet.</div>'}
+function renderSettings(){document.getElementById("cycleInput").value=state.settings.cycle;document.getElementById("amountInput").value=state.settings.amount}
+function renderAll(){renderDashboard();renderMembers();renderPayments();renderVerification();renderNotifications();renderDraws();renderSettings();document.getElementById("pendingBadge").textContent=state.payments.filter(p=>p.cycle===state.settings.cycle&&p.status==="pending").length;document.getElementById("notifBadge").textContent=unread();document.getElementById("bellDot").style.display=unread()?"block":"none"}
+document.getElementById("memberSearch").oninput=renderMembers;document.getElementById("paymentFilter").onchange=renderPayments;
+function openMemberModal(){document.getElementById("memberModal").classList.add("show")}
+function closeMemberModal(){document.getElementById("memberModal").classList.remove("show")}
+function addMember(){const id=+mNumber.value,name=mName.value.trim(),phone=mPhone.value.trim();if(!id||id<1||id>100||!name){toast("Enter a valid member number and name.");return}if(state.members.some(m=>m.id===id)){toast("That member number already exists.");return}state.members.push({id,name,phone,active:true});state.members.sort((a,b)=>a.id-b.id);closeMemberModal();mNumber.value="";mName.value="";mPhone.value="";save();toast("Member added locally.")}
+function submitFor(id){let p=state.payments.find(x=>x.memberId===id&&x.cycle===state.settings.cycle);if(p&&p.status==="paid"){toast("This member is already paid.");return}if(p&&p.status==="pending"){toast("A slip is already waiting for review.");return}state.payments=state.payments.filter(x=>!(x.memberId===id&&x.cycle===state.settings.cycle));state.payments.push({id:uid(),memberId:id,cycle:state.settings.cycle,amount:state.settings.amount,slipName:"bank-slip-"+id+".jpg",status:"pending",submittedAt:now()});let m=state.members.find(x=>x.id===id);addNotification("Super Admin", "New Payment Slip", `${m.name} (#${id}) submitted a payment slip for ${state.settings.amount.toLocaleString()} ETB.`, "info");save();toast("Slip submitted. Super Admin notification created.")}
+function simulateSubmission(){const candidates=state.members.filter(m=>statusFor(m.id)!=="paid"&&!state.payments.some(p=>p.memberId===m.id&&p.cycle===state.settings.cycle&&p.status==="pending"));if(!candidates.length){toast("No member available for a simulated submission.");return}submitFor(candidates[Math.floor(Math.random()*candidates.length)].id);showView("verification")}
+function openSlip(id){const p=state.payments.find(x=>x.id===id),m=state.members.find(x=>x.id===p.memberId);document.getElementById("slipContent").innerHTML=`<div class="slip-preview">🧾</div><h3 style="margin-top:15px">Bank Payment Slip</h3><p><b>Member:</b> #${m.id} — ${esc(m.name)}<br><b>Amount:</b> ${p.amount.toLocaleString()} ETB<br><b>Cycle:</b> #${String(p.cycle).padStart(3,"0")}<br><b>File:</b> ${esc(p.slipName)}<br><b>Submitted:</b> ${esc(p.submittedAt)}</p><div class="modal-actions">${p.status==="pending"?`<button class="danger" onclick="rejectPayment('${p.id}');closeSlip()">Reject</button><button class="primary" onclick="confirmPayment('${p.id}');closeSlip()">Confirm</button>`:""}</div>`;document.getElementById("slipModal").classList.add("show")}
+function closeSlip(){document.getElementById("slipModal").classList.remove("show")}
+function confirmPayment(id){const p=state.payments.find(x=>x.id===id);if(!p)return;p.status="paid";p.verifiedAt=now();p.verifiedBy="Super Admin";let m=state.members.find(x=>x.id===p.memberId);addNotification("Member #"+m.id,"Payment Confirmed",`Your Cycle #${String(p.cycle).padStart(3,"0")} payment of ${p.amount.toLocaleString()} ETB was verified successfully.`,"success");save();toast("Payment confirmed — PAID 🟢")}
+function rejectPayment(id){const p=state.payments.find(x=>x.id===id);if(!p)return;p.status="rejected";p.rejectedAt=now();let m=state.members.find(x=>x.id===p.memberId);addNotification("Member #"+m.id,"Payment Rejected",`Your payment slip was rejected. Please upload a new slip.`,"error");save();toast("Payment rejected.")}
+function markAllRead(){state.notifications.forEach(n=>n.read=true);save();toast("All notifications marked as read.")}
+function saveSettings(){state.settings.cycle=Math.max(1,+cycleInput.value||1);state.settings.amount=Math.max(0,+amountInput.value||0);save();toast("Settings saved locally.")}
+function clearDemo(){if(confirm("Reset all local demo data?")){localStorage.removeItem(KEY);location.reload()}}
+function resetDraw(){state.draws=[];save();toast("Draw history cleared.")}
+function secureRandom(max){const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]/(0xffffffff+1)*max}
+let drawing=false;
+function runDraw(){if(drawing)return;const eligible=state.members.filter(m=>statusFor(m.id)==="paid");if(eligible.length<1){toast("No paid members are eligible for the draw.");return}drawing=true;const btn=document.getElementById("drawBtn");btn.disabled=true;let ticks=0,total=28;const timer=setInterval(()=>{ticks++;document.getElementById("drawNumber").textContent=String(eligible[Math.floor(Math.random()*eligible.length)].id).padStart(2,"0");document.getElementById("drawLabel").textContent="DRAWING…";if(ticks>=total){clearInterval(timer);const winner=eligible[Math.floor(secureRandom(eligible.length))];document.getElementById("drawNumber").textContent=String(winner.id).padStart(2,"0");document.getElementById("drawLabel").textContent="WINNER";state.draws.unshift({id:uid(),winnerId:winner.id,name:winner.name,cycle:state.settings.cycle,time:Date.now()});addNotification("Super Admin","Equb Draw Completed",`Winner: #${winner.id} — ${winner.name}.`,"success");save();toast(`Winner: #${winner.id} — ${winner.name}`);drawing=false;btn.disabled=false}},70)}
+renderAll();
+
+</script>
+</body>
+</html>
